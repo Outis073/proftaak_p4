@@ -22,7 +22,7 @@ class Product extends Model
     {
         $pdo = DB::connect();
 
-        $stmt = $pdo->prepare("SELECT id, name, description, price FROM models WHERE active = 1");
+        $stmt = $pdo->prepare("SELECT id, name, description, price FROM models WHERE active = 1 ORDER BY price");
         $stmt->execute();
 
         $productArray = [];
