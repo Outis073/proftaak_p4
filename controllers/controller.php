@@ -1,6 +1,6 @@
 <?php
 
-require_once ( 'Views/View.php' );
+require_once ( 'views/view.php' );
 
 class Controller
 {
