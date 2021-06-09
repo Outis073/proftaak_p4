@@ -1,0 +1,13 @@
+{
+	"autoload" : {
+		"classmap" : [
+			"src/Controllers",
+			"src/Models",
+			"src/Views",
+			"src/Images"
+		]
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.5"
+	}
+}
