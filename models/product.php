@@ -1,6 +1,6 @@
 <?php
 
-require_once ( 'model.php' );
+require_once('Model.php');
 
 class Product extends Model
 {
@@ -70,6 +70,9 @@ class Product extends Model
 
         throw new Exception('Record niet gevonden...');
     }
+
+
+
 /*
     public function save()
     {

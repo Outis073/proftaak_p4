@@ -9,13 +9,13 @@ class Controller
 
     public function __construct( string $controller, string $action )
     {
-        if ( ! file_exists( 'Controllers/' . $controller . 'Controller.php' ) )
-            throw new Exception( "Controller " . $controller . " bestaat niet..." );
+        if ( ! file_exists( 'controllers/' . $controller . 'controller.php' ) )
+            throw new Exception( "controller " . $controller . " bestaat niet..." );
 
-        $this->controller = $controller . "Controller";
+        $this->controller = $controller . "controller";
         $this->action = $action;
 
-        require_once ( $controller . 'Controller.php' );
+        require_once ( $controller . 'controller.php' );
     
     }
 

@@ -22,7 +22,7 @@ class View
 
     public function render() : void
     {
-        if ( ! file_exists( 'Views/' . $this->template . '.php' ) )
+        if ( ! file_exists( 'views/' . $this->template .'.php' ) )
             throw new Exception( "De template " . $this->template . " bestaat niet..." );
 
         extract($this->data);
