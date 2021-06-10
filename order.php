@@ -2,7 +2,7 @@
 
 
 require_once ('controllers/controller.php');
-require_once ('./models/db.php');
+require_once ('db.php');
 
 
 $controller="order";

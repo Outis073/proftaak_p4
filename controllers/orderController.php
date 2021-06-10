@@ -11,7 +11,7 @@ class orderController{
         $view->set('user', 'Xanh');
         $view->set('title', 'Home');
         $view->set('content', 'welkom');
-        $view->set('order', Order::getAll());
+        $view->set('order', Order::SPGetOrderHistoryUser(1));
         
 
         $view->render();
@@ -19,18 +19,4 @@ class orderController{
 
     }
 
-    public function test(){
-
-        $view = new View('orderview.edit');
-        $view->set('title', 'Home');
-        $view->set('content', 'welkom');
-        $view->set('test', 'dit is een test');
-        $view->set('order', Order::getAll());
-
-        var_dump($_POST);
-        
-
-        $view->render();
-
-    }
 }

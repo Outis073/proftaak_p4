@@ -39,7 +39,7 @@
 
 <body>
 
-  <h1><?php echo $user; ?></h1>
+  <h1><?php echo "welkom " . $user; ?></h1>
 
   <ul class="list-group">
     <li class="list-group-item">Cras justo odio</li>
@@ -62,22 +62,20 @@
     <thead>
       <tr>
         <td>id</td>
-        <td>name</td>
-        <td>price</td>
-        <td>image</td>
-        <td>active</td>
-        <td>description</td>
+        <td>date</td>
+        <td>delivery_date</td>
+        <td>payment_option</td>
+        <td>status</td>
       </tr>
     </thead>
     <tbody>
       <?php foreach ($order as $order) : ?>
         <tr>
           <td><?php echo $order->get('id'); ?></td>
-          <td><?php echo $order->get('name'); ?></td>
-          <td><?php echo $order->get('price'); ?></td>
-          <td><?php echo $order->get('image'); ?></td>
-          <td><?php echo $order->get('active'); ?></td>
-          <td><?php echo $order->get('description'); ?></td>
+          <td><?php echo $order->get('date'); ?></td>
+          <td><?php echo $order->get('delivery_date'); ?></td>
+          <td><?php echo $order->get('payment_option'); ?></td>
+          <td><?php echo $order->get('status'); ?></td>
         </tr>
       <?php endforeach; ?>
     </tbody>
