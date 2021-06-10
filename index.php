@@ -1,9 +1,8 @@
 <?php
-
+session_start();
 require_once 'vendor/autoload.php';
 
-
-$controller = "Product";
+$controller = "Home";
 $action = "index";
 
 if ( isset( $_GET['controller'] ) )
@@ -11,7 +10,6 @@ if ( isset( $_GET['controller'] ) )
 
 if ( isset( $_GET['action'] ) )
     $action = $_GET['action'];
-//$controller = new Controller('Task', 'index');
 $controller = new Controller($controller, $action);
 
 $controller->run();

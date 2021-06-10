@@ -1,7 +1,4 @@
-<?php
-//namespace Vitae\Views;
-//require_once 'vendor/autoload.php';
-?>
+<?php require_once (__DIR__ . '/incl/header.php'); ?>
 
 <h1><?php echo $title; ?></h1>
 
@@ -55,4 +52,4 @@
 <nav>
     <a href="index.php?controller=Product&action=add">Model toevoegen</a>
 </nav>
-<?php require_once ( 'partials/footer.php' ); ?>
+<?php require_once (__DIR__ . '/incl/footer.php'); ?>

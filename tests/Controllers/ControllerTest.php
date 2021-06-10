@@ -13,13 +13,5 @@ class ControllerTest extends TestCase
 
 		$this->assertEquals('ProductController', $result);
 	}
-
-	public function testCsonstructor()
-	{
-		$controller = new Controller("Product", "index");
-		$result =  $controller->getController();
-
-		$this->assertEquals('ProductController', $result);
-	}
 	
 }

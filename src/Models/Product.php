@@ -24,7 +24,7 @@ class Product extends Model
     {
         $pdo = DB::connect();
 
-        $stmt = $pdo->prepare("SELECT id, name, description, price, image FROM models WHERE active = 1");
+        $stmt = $pdo->prepare("SELECT id, name, description, price, image FROM models WHERE active = 1");  //STORED PROCEDURE!!!!!!!!!!!!!!!!!!!!!!!!!
         $stmt->execute();
 
         $productArray = [];
@@ -75,7 +75,7 @@ class Product extends Model
     public function addImage($id, $image)
     {
         $name = $_FILES['file']['name'];
-        $target_dir = "images/";
+        $target_dir = "src/images/";
         //check if image exists. If exist:
         $target_file = $target_dir . basename($_FILES["file"]["name"]);
 

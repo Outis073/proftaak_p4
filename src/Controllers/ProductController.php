@@ -4,16 +4,14 @@ class ProductController
 {
     public function index()
     {
+        if(!$_SESSION['user_type'] == "admin")
+            header("index.php?Controller=Home&Action=index");
+
         $view = new View('product');
         $view->set('title', 'Taken');
         $view->set('products', Product::getAll());
 
         $view->render();
-    }
-
-    public function add()
-    {
-
     }
 
     public function changePrice(){
@@ -62,20 +60,5 @@ class ProductController
         $view->set('products', Product::getAll());
 
         $view->render();
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function save()
-    {
-
-    }
-
-    public function delete()
-    {
-
     }
 }

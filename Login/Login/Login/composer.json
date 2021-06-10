@@ -1,0 +1,10 @@
+{
+	"autoload" : {
+		"classmap" : [
+			"src/Controllers",
+			"src/Models",
+			"src/Views",
+			"src/Images"
+		]
+	}
+}
