@@ -74,7 +74,10 @@ class ComposerStaticInit7f2919a9f09e640b7198973c42d813df
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controller' => __DIR__ . '/../..' . '/src/Controllers/Controller.php',
         'DB' => __DIR__ . '/../..' . '/src/Models/DB.php',
+        'Home' => __DIR__ . '/../..' . '/src/Models/Home.php',
+        'HomeController' => __DIR__ . '/../..' . '/src/Controllers/HomeController.php',
         'Model' => __DIR__ . '/../..' . '/src/Models/Model.php',
+        'Option' => __DIR__ . '/../..' . '/src/Models/Option.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
@@ -700,7 +703,11 @@ class ComposerStaticInit7f2919a9f09e640b7198973c42d813df
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'User' => __DIR__ . '/../..' . '/src/Models/User.php',
+        'UserController' => __DIR__ . '/../..' . '/src/Controllers/UserController.php',
         'View' => __DIR__ . '/../..' . '/src/Views/View.php',
+        'order' => __DIR__ . '/../..' . '/src/Models/Order.php',
+        'orderController' => __DIR__ . '/../..' . '/src/Controllers/OrderController.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
