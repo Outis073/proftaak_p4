@@ -1,6 +1,6 @@
 <?php
 
-require_once ('Model.php');
+// require_once ('Model.php');
 
 
 class order extends Model
@@ -57,7 +57,7 @@ class order extends Model
 
         $allorders = $stmt->fetchAll();
 
-        var_dump($allorders);
+        //var_dump($allorders);
 
         foreach($allorders as $order)
         {

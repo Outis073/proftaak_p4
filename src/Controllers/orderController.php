@@ -1,6 +1,6 @@
 <?php
 
-// require_once ( __DIR__ . '\..\models\order.php');
+require_once ( __DIR__ . '\..\models\order.php');
 
 class orderController{
 

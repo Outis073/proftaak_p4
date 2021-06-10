@@ -1,8 +1,9 @@
 <?php
 
+require_once ('vendor/autoload.php');
 
-require_once ('controllers/controller.php');
-require_once ('db.php');
+// require_once ('controllers/controller.php');
+// require_once ('db.php');
 
 
 $controller="order";
