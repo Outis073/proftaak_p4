@@ -4,8 +4,7 @@ class ProductController
 {
     public function index()
     {
-        if(!$_SESSION['user_type'] == "admin")
-            header("index.php?Controller=Home&Action=index");
+        $this->authorize();
 
         $view = new View('product');
         $view->set('title', 'Taken');
@@ -14,7 +13,14 @@ class ProductController
         $view->render();
     }
 
+    function authorize(){
+        if(!isset($_SESSION['user_type']) || !$_SESSION['user_type'] == "admin")
+            header("Location: index.php?controller=Home&action=index");
+    }
+
     public function changePrice(){
+        $this->authorize();
+
         if (!isset( $_POST['newPrice']) || !isset( $_POST['id']))
             throw new Exception('Geen prijs/ID gevonden!');
 
@@ -29,6 +35,8 @@ class ProductController
     }
 
     public function addImage(){
+        $this->authorize();
+
         if (!isset( $_POST['image_upload']) || !isset( $_POST['id']))
             throw new Exception('Geen afbeelding/ID gevonden!');
 
@@ -44,6 +52,8 @@ class ProductController
 
 
     public function addProducts(){
+        $this->authorize();
+
         if (isset($_POST['csvModels'])) 
         {
             $handle = fopen($_FILES['filename']['tmp_name'], "r");
