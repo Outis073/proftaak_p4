@@ -20,6 +20,13 @@
                 <a class="nav-link" href="<?= ''; ?>/pages/about">About</a>
             </li>
         </ul>
+
+        <div class="search-container" >
+            <form class="search" action="./?controller=search" method="POST">
+                <input class="" type="text" placeholder="Zoek.." name="search" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
         
         <ul class="navbar-nav ml-auto">
             <?php if (isset($_SESSION['user_id'])) : ?>
