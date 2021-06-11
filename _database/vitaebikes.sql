@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 29 mei 2021 om 17:10
--- Serverversie: 10.4.18-MariaDB
--- PHP-versie: 8.0.3
+-- Gegenereerd op: 11 jun 2021 om 13:27
+-- Serverversie: 10.4.14-MariaDB
+-- PHP-versie: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,10 @@ SET @id = LAST_INSERT_ID();
 INSERT INTO basket (user_id, bike_id) VALUES (pUserID, (SELECT @id));
 SELECT @id;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPAddModel` (IN `pName` VARCHAR(255), IN `pDescription` VARCHAR(255), IN `pPrice` DECIMAL)  MODIFIES SQL DATA
+    SQL SECURITY INVOKER
+INSERT INTO models (name, description, price, active) VALUES (pName, pDescription, pPrice, 1)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPAddOptionsToBike` (IN `pBikeID` INT(11), IN `pOptionID` INT(11))  MODIFIES SQL DATA
     SQL SECURITY INVOKER
@@ -91,6 +95,14 @@ BEGIN
 SELECT id FROM users WHERE email = INEmail;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetModels` ()  READS SQL DATA
+    SQL SECURITY INVOKER
+SELECT id, name, description, price, image FROM models where active = 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetOptions` ()  READS SQL DATA
+    SQL SECURITY INVOKER
+SELECT id, name, price, category, image FROM options WHERE active = 1 order by category$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetOrderHistoryUser` (IN `pUserId` INT)  BEGIN
     SELECT id, date, delivery_date, payment_option, status
     FROM orders
@@ -129,6 +141,15 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRemoveOptionFromBasket` (IN `pBikeID` INT(11), IN `pOptionID` INT(11))  SQL SECURITY INVOKER
 DELETE FROM bikes_options WHERE bike_id = pBikeID AND option_id = pOptionID$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPSearch` (IN `pTerm` VARCHAR(255))  READS SQL DATA
+    SQL SECURITY INVOKER
+BEGIN
+IF (SELECT COUNT(*) FROM models WHERE (name LIKE CONCAT('%', pTerm, '%') OR description LIKE CONCAT('%', pTerm, '%')) AND active = 1 > 0)
+THEN (SELECT * FROM models WHERE (name LIKE CONCAT('%', pTerm, '%') OR description LIKE CONCAT('%', pTerm, '%')) AND active = 1);
+ELSE INSERT INTO Searches (term, date) VALUES (pTerm, NOW());
+END IF;
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPSelectBikesInOrder` (IN `pID` INT(11))  SQL SECURITY INVOKER
 SELECT * FROM bikes WHERE order_id = pID$$
@@ -186,7 +207,9 @@ INSERT INTO `bikes` (`id`, `model_id`, `order_id`, `status`) VALUES
 (13, 4, 10, ''),
 (14, 6, 11, ''),
 (15, 6, 11, ''),
-(16, 4, 12, '');
+(16, 4, 12, ''),
+(17, 1, 1, 'hoi'),
+(18, 1, 1, 'hoi');
 
 -- --------------------------------------------------------
 
@@ -223,9 +246,9 @@ INSERT INTO `bikes_options` (`bike_id`, `option_id`) VALUES
 CREATE TABLE `models` (
   `id` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
-  `description` varchar(254) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `price` decimal(9,2) NOT NULL,
-  `image` blob NOT NULL,
+  `image` varchar(255) NOT NULL,
   `active` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -234,22 +257,30 @@ CREATE TABLE `models` (
 --
 
 INSERT INTO `models` (`id`, `name`, `description`, `price`, `image`, `active`) VALUES
-(1, 'Vita-S', '', '850.00', '', b'0'),
+(1, 'Vita-S', 'goede fiets', '850.00', '', b'0'),
 (2, 'Vita-X', '', '1375.00', '', b'0'),
 (3, 'Vita-L', '', '2000.00', '', b'0'),
-(4, 'Vita-S', '', '900.00', '', b'0'),
+(4, 'Vita-S', 'goede fiets', '900.00', '', b'0'),
 (5, 'Vita-X', '', '1500.00', '', b'0'),
 (6, 'Vita-L', '', '2100.00', '', b'0'),
-(12, 'Vita-S', '', '850.00', '', b'0'),
-(13, 'Vita-X', '', '1375.00', '', b'0'),
-(14, 'Vita-L', '', '2000.00', '', b'0'),
-(15, 'Vita-S', '', '900.00', '', b'0'),
-(16, 'Vita-X', '', '1500.00', '', b'0'),
-(17, 'Vita-L', '', '2100.00', '', b'0'),
-(18, 'Vita-S', '', '950.00', '', b'0'),
-(19, 'Vita-L', '', '2200.00', '', b'1'),
-(20, 'Vita-S', '', '975.00', '', b'1'),
-(21, 'Vita-X', '', '1575.00', '', b'1');
+(12, 'Vita-X', '', '6.00', 'popcat popcorn.gif', b'0'),
+(13, 'Vita-L', '', '6.00', '', b'0'),
+(14, 'Vita-S', 'goede fiets', '9.00', 'jerma rat gif.gif', b'0'),
+(15, 'Vita-S', 'goede fiets', '9.00', '', b'0'),
+(16, 'Vita-L', '', '8.00', 'ratmod.gif', b'0'),
+(17, 'Vita-S', 'goede fiets', '10.00', 'emu.png', b'0'),
+(18, 'testname', 'testdescription', '4.00', '', b'0'),
+(19, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'0'),
+(27, 'Vita-L', 'Descriptie', '6.00', 'emu.png', b'1'),
+(31, 'nieuw model 1', 'description 2', '1.00', 'emu.png', b'1'),
+(32, 'nieuw model 2', 'Description 2', '2.00', '', b'1'),
+(33, 'nieuw model 3', 'Description 3', '3.00', '', b'0'),
+(34, 'nieuw model 3', 'Description 3', '17.00', '', b'0'),
+(35, 'nieuw model 3', 'Description 3', '364.00', '', b'0'),
+(36, 'nieuw model 3', 'Description 3', '151.00', '', b'0'),
+(37, 'nieuw model 3', 'Description 3', '2346.00', '', b'1'),
+(38, 'Vita-S', 'goede fiets', '1111111.00', 'emu.png', b'1'),
+(39, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'1');
 
 -- --------------------------------------------------------
 
@@ -262,7 +293,7 @@ CREATE TABLE `options` (
   `name` varchar(40) NOT NULL,
   `price` decimal(9,2) NOT NULL,
   `category` varchar(40) NOT NULL,
-  `image` blob NOT NULL,
+  `image` varchar(255) NOT NULL,
   `active` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -271,9 +302,9 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`id`, `name`, `price`, `category`, `image`, `active`) VALUES
-(1, 'Fietstas model A', '65.00', 'Tassen', '', b'0'),
-(2, 'Fietstas model B', '43.00', 'Tassen', '', b'1'),
-(3, 'Fietscomputer Extra', '125.00', 'Computers', '', b'1'),
+(1, 'Fietstas model A', '65.00', 'Tassen', 'jerma rat gif.gif', b'0'),
+(2, 'Fietstas model B', '43.00', 'Tassen', 'jerma rat gif.gif', b'1'),
+(3, 'Fietscomputer Extra', '125.00', 'Computers', 'jerma rat gif.gif', b'1'),
 (4, 'Stuur model A', '78.00', 'Sturen', '', b'1'),
 (5, 'Kleur frame Wit metalic', '75.00', 'Frame', '', b'1'),
 (6, 'Kleur frame Rood metalic', '75.00', 'Frame', '', b'1'),
@@ -336,8 +367,29 @@ INSERT INTO `reviews` (`id`, `user_id`, `model_id`, `rating`, `text`, `date`) VA
 (1, 1, 1, 4, 'Top fiets. Loopt lekker ligt. Levertijd zou korter mogen.', '2020-09-28 00:00:00'),
 (2, 4, 6, 5, 'Wat een fijne fiets. Je hoeft bijna niet meer zalf te trappen :-)', '2021-02-21 00:00:00'),
 (3, 8, 2, 5, 'Complete fiets. Stevig en solide. Motor maakt weinig geluid.', '2020-11-21 00:00:00'),
-(4, 9, 4, 3, 'Moest de banden zelf nog oppompen. Verder zeer mooie fiets.', '2021-03-11 00:00:00'),
-(5, 7, 5, 5, 'fiets voor m\'n vrouw besteld. Echt mooie e-bike. Binnenkort bestel ik er één voor mezelf.', '2021-01-30 00:00:00');
+(4, 9, 4, 3, 'Moest de banden zelf nog oppompen. Verder zeer mooie fiets.', '2021-03-11 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `searches`
+--
+
+CREATE TABLE `searches` (
+  `id` int(11) NOT NULL,
+  `term` varchar(255) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `searches`
+--
+
+INSERT INTO `searches` (`id`, `term`, `date`) VALUES
+(1, 'wrong', '2021-04-30 21:31:08'),
+(2, 'blablabla', '2021-04-30 21:32:18'),
+(3, 'fiets', '2021-04-30 21:39:19'),
+(4, 'go', '2021-04-30 21:43:36');
 
 -- --------------------------------------------------------
 
@@ -366,15 +418,28 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password_salt`, `password_hash`, `first_name`, `last_name`, `street`, `house_number`, `postal_code`, `city`, `phone`, `active`, `function`) VALUES
-(1, 'jjansen@webbie.nl', 'testsalt', 'testhash', 'Jan', 'Jansen', 'Beatrixstraat', '5', '4824AJ', 'Tilburg', '', b'1', 'customer'),
-(2, 'keesie1234@kpnmail.nl', 'tev4d1mzvlm', '5013281ee94f72312f14ac6bcabe6e4c', 'Kees', 'de Vries', 'Schoolstraat', '2', '4531AK', 'Terneuzen', '', b'1', 'customer'),
-(3, 'bouwensk@tester.com', 'h046j2xs1ug', '36482f138e31e5280e01391c5d535b2b', 'Kim', 'Bouwens', 'Sportlaan', '45', '4401KR', 'Goes', '', b'1', 'customer'),
-(4, 'nel.van.der.ven@gmailer.com', 'e7rd8n0msii', 'abc8be43dc4adfbe80171f81836524d8', 'Nel', 'van der Ven', 'Molenweg', '17', '4611CE', 'Bergen op Zoom', '', b'1', 'customer'),
-(5, 'martinv@mailie.nl', 'yh9m7ck4cm7', 'fcc528087e0cc15947eee57b6c111e5f', 'Martin', 'Versteeg', 'Nieuwstraat', '99', '1083XX', 'Rotterdam', '', b'0', 'customer'),
-(6, 'K.toets@gmail.com', 'ur1t868yuah', '11577ea1a36cac29b0785574079d463b', 'Kees', 'Toets', 'Stadspark', '23', '5674GH', 'Roosendaal', '', b'1', 'customer'),
-(7, 'Juul@gmail.com', 't3s9g8qsmvs', '2e886de1bb99f9eb747993aee6fca8d5', 'Juul', 'de Korte', 'De Grote Markt', '23A', '5223BA', '\'s - Hertogenbosch', '', b'1', 'customer'),
-(8, 'a.vd.ven@hotmail.nl', 'dj7b442frfw', 'c390f10435f61e6b836c568e228a4a1f', 'Anton', 'van de Ven', 'Singel', '3', '2596LL', 'Zaandam', '', b'1', 'customer'),
-(9, 'b_strijker@hotmail.com', 'gu7elujnb5m', '986f066dc97d2a2c5e6c40460b4a491f', 'Ben', 'Strijker', 'Strijkstok', '1', '2345AB', 'Breukelen', '', b'0', 'customer');
+(1, 'jjansen@webbie.nl', 'testsalt', '$2y$10$avVYCMrOxzGJPjW1/j4hHeJkR0wCismR4gaPnlqaBvBCGI0.6IUNq', 'Bennie', 'Striker', 'Beatrixstraat', '5', '4824AJ', 'Tilburg', '', b'1', 'customer'),
+(2, 'keesie1234@kpnmail.nl', '', '$2y$10$avVYCMrOxzGJPjW1/j4hHeJkR0wCismR4gaPnlqaBvBCGI0.6IUNq', 'Bennie', 'Striker', 'Schoolstraat', '2', '4531AK', 'Terneuzen', '', b'1', 'admin'),
+(3, 'bouwensk@tester.com', '', '', 'Bennie', 'Striker', 'Sportlaan', '45', '4401KR', 'Goes', '', b'1', ''),
+(4, 'nel.van.der.ven@gmailer.com', '', '', 'Bennie', 'Striker', 'Molenweg', '17', '4611CE', 'Bergen op Zoom', '', b'1', ''),
+(5, 'martinv@mailie.nl', '', '', 'Martin', 'Verstappe', 'Nieuwstraat', '99', '1083XX', 'Rotterdam', '', b'0', ''),
+(6, 'K.toets@gmail.com', '', '', 'Bennie', 'Striker', 'Stadspark', '23', '5674GH', 'Roosendaal', '', b'1', ''),
+(7, 'Juul@gmail.com', '', '', 'Bennie', 'Striker', 'De Grote Markt', '23A', '5223BA', '\'s - Hertogenbosch', '', b'1', ''),
+(8, 'a.vd.ven@hotmail.nl', '', '', 'Bennie', 'Striker', 'Singel', '3', '2596LL', 'Zaandam', '', b'1', ''),
+(9, 'b_strijker@hotmail.com', '', '', 'Bennie', 'Striker', 'Strijkstok', '1', '2345AB', 'Breukelen', '', b'0', ''),
+(10, 'Nep.Email@haha.com', '', '$2y$10$avVYCMrOxzGJPjW1/j4hHeJkR0wCismR4gaPnlqaBvBCGI0.6IUNq', 'Nep voornaam', 'Nep achternaam', 'Nepstraat', '1', '1234AB', 'Eindhoven', '12345678', b'1', 'customer'),
+(11, 'testmail@test.com', '', '$2y$10$AGMlk8C5PvP2zj8x4NfV/ulfunJ.SNbMbYe4jGCv3LahPsdDEQnBq', 'test', 'test', 'test', '12', '1234BC', 'Eindhoven', '12345678', b'1', 'customer');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structuur voor view `viewname`
+-- (Zie onder voor de actuele view)
+--
+CREATE TABLE `viewname` (
+`first_name` varchar(255)
+,`last_name` varchar(255)
+);
 
 -- --------------------------------------------------------
 
@@ -386,7 +451,7 @@ CREATE TABLE `vmodels` (
 `id` int(11)
 ,`name` varchar(40)
 ,`price` decimal(9,2)
-,`image` blob
+,`image` varchar(255)
 ,`active` bit(1)
 );
 
@@ -401,7 +466,7 @@ CREATE TABLE `voptions` (
 ,`name` varchar(40)
 ,`price` decimal(9,2)
 ,`category` varchar(40)
-,`image` blob
+,`image` varchar(255)
 ,`active` bit(1)
 );
 
@@ -424,6 +489,15 @@ CREATE TABLE `vorders` (
 ,`payment_option` varchar(40)
 ,`status` varchar(255)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structuur voor de view `viewname`
+--
+DROP TABLE IF EXISTS `viewname`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewname`  AS SELECT `users`.`first_name` AS `first_name`, `users`.`last_name` AS `last_name` FROM `users` WHERE `users`.`active` = 0 ;
 
 -- --------------------------------------------------------
 
@@ -507,6 +581,12 @@ ALTER TABLE `reviews`
   ADD KEY `FK_reviews_models` (`model_id`);
 
 --
+-- Indexen voor tabel `searches`
+--
+ALTER TABLE `searches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `users`
 --
 ALTER TABLE `users`
@@ -521,13 +601,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `bikes`
 --
 ALTER TABLE `bikes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT voor een tabel `models`
 --
 ALTER TABLE `models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT voor een tabel `options`
@@ -548,10 +628,16 @@ ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT voor een tabel `searches`
+--
+ALTER TABLE `searches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
