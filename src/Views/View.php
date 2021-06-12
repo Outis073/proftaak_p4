@@ -29,7 +29,10 @@ class View
 
         extract($this->data);
 
+        require_once ( 'languages/' . $_SESSION['lang'] . '.php');
+
         require_once ( $this->template . '.php');
+
     }
 }
 

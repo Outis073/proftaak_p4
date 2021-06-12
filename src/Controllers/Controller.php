@@ -31,6 +31,10 @@ class Controller
 
             if ( method_exists( $controller, $this->action ) )
             {
+                if(!isset($_SESSION['lang']))
+                {$_SESSION['lang'] = 'nl';}; 
+                
+                
                 $controller->{$this->action}();
             }
         }

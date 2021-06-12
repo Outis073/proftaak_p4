@@ -2,8 +2,10 @@
 
 <div class="jumbotron jumbotron-flud text-center">
 	<div class="container">
-		<h1 class="display-3"><?= $title; ?></h1>
-		<p class="lead"><?= $content; ?></p>
+		<h1 class="display-3"><?= $langTitle; ?></h1>
+		<p class="lead"><?= $langContent; ?></p>
+		
+
 		<table>
 			<thead>
 				<tr>
