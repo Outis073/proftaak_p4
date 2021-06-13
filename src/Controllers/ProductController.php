@@ -4,7 +4,8 @@ class ProductController
 {
     public function index()
     {
-        $this->authorize();
+        if(!$this->authorize())
+            throw new Exception('Geen Admin');
 
         $view = new View('product');
         $view->set('title', 'Taken');
@@ -14,12 +15,14 @@ class ProductController
     }
 
     function authorize(){
-        if(!isset($_SESSION['user_type']) || !$_SESSION['user_type'] == "admin")
-            header("Location: index.php?controller=Home&action=index");
+        if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] == "customer")
+            return false;
+        return true;
     }
 
     public function changePrice(){
-        $this->authorize();
+        if(!$this->authorize())
+            throw new Exception('Geen Admin');
 
         if (!isset( $_POST['newPrice']) || !isset( $_POST['id']))
             throw new Exception('Geen prijs/ID gevonden!');
@@ -35,7 +38,8 @@ class ProductController
     }
 
     public function addImage(){
-        $this->authorize();
+        if(!$this->authorize())
+            throw new Exception('Geen Admin');
 
         if (!isset( $_POST['image_upload']) || !isset( $_POST['id']))
             throw new Exception('Geen afbeelding/ID gevonden!');
@@ -52,7 +56,8 @@ class ProductController
 
 
     public function addProducts(){
-        $this->authorize();
+        if(!$this->authorize())
+            throw new Exception('Geen Admin');
 
         if (isset($_POST['csvModels'])) 
         {

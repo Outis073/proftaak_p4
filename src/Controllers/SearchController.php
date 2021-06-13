@@ -15,12 +15,14 @@
         }
 
         function authorize(){
-            if(!isset($_SESSION['user_type']) || !$_SESSION['user_type'] == "admin")
-                header("Location: index.php?controller=Home&action=index");
+            if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] == "customer")
+                return false;
+            return true;
         }
 
         public function searchHistory(){
-            $this->authorize();
+            if(!$this->authorize())
+                throw new Exception('Geen Admin');
 
             $view = new View('SearchHistory');
             $view->set('title','Zoekopdrachten');
@@ -34,7 +36,8 @@
         }
 
         public function removeSearch(){
-            $this->authorize();
+            if(!$this->authorize())
+                throw new Exception('Geen Admin');
 
             if (!isset( $_POST['id']))
                 throw new Exception('Geen ID gevonden!');
