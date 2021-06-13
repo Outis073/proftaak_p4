@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 11 jun 2021 om 13:27
+-- Gegenereerd op: 13 jun 2021 om 13:06
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.11
 
@@ -89,6 +89,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SPFindOrderByID` (IN `pOrderID` INT
     WHERE id = pOrderID;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetFailedSearches` ()  READS SQL DATA
+    SQL SECURITY INVOKER
+SELECT * FROM searches$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetIDFromEmail` (IN `INEmail` VARCHAR(255))  MODIFIES SQL DATA
     SQL SECURITY INVOKER
 BEGIN 
@@ -141,6 +145,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRemoveOptionFromBasket` (IN `pBikeID` INT(11), IN `pOptionID` INT(11))  SQL SECURITY INVOKER
 DELETE FROM bikes_options WHERE bike_id = pBikeID AND option_id = pOptionID$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPRemoveSearch` (IN `pID` INT(11))  MODIFIES SQL DATA
+    SQL SECURITY INVOKER
+DELETE FROM searches WHERE id = pID$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPSearch` (IN `pTerm` VARCHAR(255))  READS SQL DATA
     SQL SECURITY INVOKER
@@ -387,9 +395,7 @@ CREATE TABLE `searches` (
 
 INSERT INTO `searches` (`id`, `term`, `date`) VALUES
 (1, 'wrong', '2021-04-30 21:31:08'),
-(2, 'blablabla', '2021-04-30 21:32:18'),
-(3, 'fiets', '2021-04-30 21:39:19'),
-(4, 'go', '2021-04-30 21:43:36');
+(2, 'blablabla', '2021-04-30 21:32:18');
 
 -- --------------------------------------------------------
 
@@ -631,7 +637,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT voor een tabel `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
