@@ -1,5 +1,5 @@
 <?php
-class Product extends Model
+class Contact extends Model
 {
     
     protected string $firstName;
@@ -21,7 +21,7 @@ class Product extends Model
 
         $stmt = $pdo->prepare("CALL SPSendContactForm( :firstName, :lastName, :email, :text)");
                 $stmt->execute([
-            ':firstName' => $this->name,
+            ':firstName' => $this->firstName,
             ':lastName' => $this->lastName,
             ':email' => $this->email,
             ':text' => $this->text

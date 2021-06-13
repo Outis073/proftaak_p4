@@ -72,6 +72,8 @@ class ComposerStaticInit7f2919a9f09e640b7198973c42d813df
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Contact' => __DIR__ . '/../..' . '/src/Models/Contact.php',
+        'ContactController' => __DIR__ . '/../..' . '/src/Controllers/ContactController.php',
         'Controller' => __DIR__ . '/../..' . '/src/Controllers/Controller.php',
         'DB' => __DIR__ . '/../..' . '/src/Models/DB.php',
         'Home' => __DIR__ . '/../..' . '/src/Models/Home.php',

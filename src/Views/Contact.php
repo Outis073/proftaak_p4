@@ -5,7 +5,7 @@
         <h1 class="display-3"><?= $langTitle; ?></h1>
         <p class="lead"><?= $langContent; ?></p>
 
-        <form action="" method="post">
+        <form action="index.php?controller=Contact&action=sendContactForm" method="post">
             Voornaam: <input type="text" name="first_name"><br>
             Achternaam: <input type="text" name="last_name"><br>
             Email: <input type="text" name="email"><br>
