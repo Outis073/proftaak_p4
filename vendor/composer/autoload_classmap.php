@@ -431,6 +431,8 @@ return array(
     'PharIo\\Version\\VersionNumber' => $vendorDir . '/phar-io/version/src/VersionNumber.php',
     'Product' => $baseDir . '/src/Models/Product.php',
     'ProductController' => $baseDir . '/src/Controllers/ProductController.php',
+    'Search' => $baseDir . '/src/Models/Search.php',
+    'SearchController' => $baseDir . '/src/Controllers/SearchController.php',
     'SebastianBergmann\\CliParser\\AmbiguousOptionException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
     'SebastianBergmann\\CliParser\\Exception' => $vendorDir . '/sebastian/cli-parser/src/exceptions/Exception.php',
     'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',

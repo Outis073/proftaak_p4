@@ -496,6 +496,8 @@ class ComposerStaticInit7f2919a9f09e640b7198973c42d813df
         'PharIo\\Version\\VersionNumber' => __DIR__ . '/..' . '/phar-io/version/src/VersionNumber.php',
         'Product' => __DIR__ . '/../..' . '/src/Models/Product.php',
         'ProductController' => __DIR__ . '/../..' . '/src/Controllers/ProductController.php',
+        'Search' => __DIR__ . '/../..' . '/src/Models/Search.php',
+        'SearchController' => __DIR__ . '/../..' . '/src/Controllers/SearchController.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',
