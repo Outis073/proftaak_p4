@@ -310,7 +310,7 @@
             $_SESSION['user_name'] = $user->first_name . ' ' . $user->last_name; //LET OP: variabelen zijn database namen!!!!
             $_SESSION['user_type'] = $user->function; // Admin of klant
 
-            header("Location: index.php?controller=Home");
+            header("Location: index.php");
         }
 
         public function logout(){

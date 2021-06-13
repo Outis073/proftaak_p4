@@ -7,18 +7,24 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= 'index.php' ?>">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= './?controller=Product&action=index' ?>">Admin pagina</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= 'index.php?controller=Order&action=index' ?>">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= 'index.php?controller=Contact&action=index' ?>">Contact</a>
-                </li>
+                <?php if(!isset($_SESSION['user_type']) || !$_SESSION['user_type'] == "admin") : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= 'index.php' ?>">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= 'index.php?controller=Order&action=index' ?>">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= 'index.php?controller=Contact&action=index' ?>">Contact</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= './?controller=Product&action=index' ?>">Producten</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= 'index.php?controller=Search&action=searchHistory' ?>">Zoekopdrachten</a>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <div class="search-container">
