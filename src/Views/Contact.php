@@ -6,10 +6,10 @@
         <p class="lead"><?= $langContent; ?></p>
 
         <form action="index.php?controller=Contact&action=sendContactForm" method="post">
-            Voornaam: <input type="text" name="first_name"><br>
-            Achternaam: <input type="text" name="last_name"><br>
-            Email: <input type="text" name="email"><br>
-            Bericht:<br><textarea rows="5" name="message" cols="30"></textarea><br>
+            Voornaam: <input type="text" name="first_name" required="required"><br>
+            Achternaam: <input type="text" name="last_name" required="required"><br>
+            Email: <input type="email" name="email" required="required"><br>
+            Bericht:<br><textarea rows="5" name="message" cols="30" required="required"></textarea><br>
             <input type="submit" name="submit" value="Submit">
         </form>
 
