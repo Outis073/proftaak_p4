@@ -4,7 +4,7 @@
 
 
 <?php echo $title; ?>
-<?php echo $content; ?>
+<?php echo $langOrdercontent; ?>
 
 
 <br>

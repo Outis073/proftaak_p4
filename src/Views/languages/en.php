@@ -12,4 +12,5 @@
 	$langTitle = "Home";
 	$langContent = "Welcome to VitaeBikes";
 	$testvariable = "engels";
+	$langOrdercontent = "this is an english test"
 ?>

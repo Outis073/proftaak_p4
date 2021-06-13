@@ -8,7 +8,7 @@ class orderController{
         $view = new View('Order');
         $view->set('user', 'Xanh');
         $view->set('title', 'Home');
-        $view->set('content', 'welkom');
+        // $view->set('content', 'welkom');
         $view->set('orders', Order::SPGetOrderHistoryUser(1));
         
 
