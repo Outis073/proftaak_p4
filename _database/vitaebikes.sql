@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 13 jun 2021 om 13:06
+-- Gegenereerd op: 13 jun 2021 om 13:53
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.11
 
@@ -162,6 +162,13 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPSelectBikesInOrder` (IN `pID` INT(11))  SQL SECURITY INVOKER
 SELECT * FROM bikes WHERE order_id = pID$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPSendContactForm` (IN `pFirstName` VARCHAR(255), IN `pLastName` VARCHAR(255), IN `pEmail` VARCHAR(255), IN `pText` VARCHAR(255))  MODIFIES SQL DATA
+    SQL SECURITY INVOKER
+BEGIN
+    INSERT INTO contact (firstname, lastname, email, contacttext)
+    VALUES (pFirstName, pLastName, pEmail, pText);
+END$$
+
 --
 -- Functies
 --
@@ -248,6 +255,27 @@ INSERT INTO `bikes_options` (`bike_id`, `option_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contacttext` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `contact`
+--
+
+INSERT INTO `contact` (`id`, `firstname`, `lastname`, `email`, `contacttext`) VALUES
+(1, 'test', 'test', 'test', 'test');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `models`
 --
 
@@ -288,7 +316,10 @@ INSERT INTO `models` (`id`, `name`, `description`, `price`, `image`, `active`) V
 (36, 'nieuw model 3', 'Description 3', '151.00', '', b'0'),
 (37, 'nieuw model 3', 'Description 3', '2346.00', '', b'1'),
 (38, 'Vita-S', 'goede fiets', '1111111.00', 'emu.png', b'1'),
-(39, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'1');
+(39, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'1'),
+(40, 'nieuw model 1', 'description 2', '1.00', '', b'1'),
+(41, 'nieuw model 2', 'Description 2', '2.00', '', b'1'),
+(42, 'nieuw model 3', 'Description 3', '3.00', '', b'1');
 
 -- --------------------------------------------------------
 
@@ -560,6 +591,12 @@ ALTER TABLE `bikes_options`
   ADD KEY `OptionID` (`option_id`);
 
 --
+-- Indexen voor tabel `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `models`
 --
 ALTER TABLE `models`
@@ -610,10 +647,16 @@ ALTER TABLE `bikes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT voor een tabel `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT voor een tabel `models`
 --
 ALTER TABLE `models`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT voor een tabel `options`
