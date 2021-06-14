@@ -1,3 +1,7 @@
+.bg-dots {
+    background-image: url("src/Images/bg-dots.png");
+}
+
 div img { 
     max-width:400px;
     margin: 5px;
@@ -5,7 +9,35 @@ div img {
 
 #benaming {
     margin-bottom: 50px !important;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+div #product {
+    background-color: white;
+    Border-radius:5px;
+}
+
+.beschrijving {
     font-size: 1.2em;
     font-weight: bold;
 }
 
+
+.form-control {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #c7c7c7;
+    height: 60px;
+  }
+  
+  .form-control:focus {
+    border-color: #41228e;
+    outline: 0;
+    box-shadow: none !important;
+  }
+  
+  textarea.form-control {
+    height: 120px;
+  }
+  
