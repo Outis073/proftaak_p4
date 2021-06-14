@@ -26,6 +26,8 @@ class UserTest extends TestCase
 
 	/*
 	 * Test login methode, maak een user object aan.
+	 * Zorg dat de gebruiker in de database bestaat met alle attributen ingevuld.
+	 * Controleer ook id van de gebruiker en pas het eventueel aan in de test.
 	 * Stel email en wachtoord in op het object, 
 	 * en controlleer met assertEquals door data van de user op te vragen.
 	 */
@@ -37,7 +39,7 @@ class UserTest extends TestCase
 
 		$row = $user->login();
 
-		$this->assertEquals($row->id, 11);
+		$this->assertEquals($row->id, 15);
 		$this->assertEquals($row->email, 'unittest@test.com');
 		$this->assertEquals($row->first_name, 'Unit');
 		$this->assertEquals($row->last_name, 'Test');
@@ -92,7 +94,7 @@ class UserTest extends TestCase
 		
 		$newUser = $user->register();
 
-		$this->assertEquals($newUser, 17);
+		$this->assertEquals($newUser, 16);
 
 	}
 
@@ -121,6 +123,7 @@ class UserTest extends TestCase
 
 		/*
 		 * Test findUserByEmail methode.
+		 * zorg dat de gebruiker unittest@test.com in de database bestaat.
 		 * Maakt een user object aan.
 		 * Stel een email adres in die voorkomt in de user tabel van de database.
 		 * Controlleer met assertTrue en assertFalse door methode aan te roepen.
