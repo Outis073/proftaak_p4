@@ -14,4 +14,3 @@
 
 <body>
     <?php require 'src/views/incl/navbar.php'; ?>
-    <div class="container">
