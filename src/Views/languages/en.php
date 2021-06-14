@@ -100,5 +100,11 @@
 
 	$langUserRegisterButton            = 'Register';
 	$langUserRegisterLogin             = 'Already have an account? Logon'; 
+
+
+	//Order pagina
+
+	$langOrderGreeting 				  = 'Welcome';
+	$langOrderInfo					  = 'Your order information:'
 	
 ?>

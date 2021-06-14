@@ -99,6 +99,12 @@
 
 	$langUserRegisterButton            = 'Registreer';
 	$langUserRegisterLogin             = 'Al een account? Login'; 
+
+
+	//Order pagina
+
+	$langOrderGreeting 				  = 'Welkom';
+	$langOrderInfo					  = 'Uw order informatie:'
 	
 
 
