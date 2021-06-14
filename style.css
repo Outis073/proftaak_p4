@@ -1,0 +1,11 @@
+div img { 
+    max-width:400px;
+    margin: 5px;
+}
+
+#benaming {
+    margin-bottom: 50px !important;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
