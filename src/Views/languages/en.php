@@ -14,6 +14,16 @@
 	$langContent                       = "Welcome to VitaeBikes";
 
 	// Navbar
+	$langNavbarHome					   = 'Home';
+	$langNavbarContact				   = 'Contact';
+	$langNavbarSearch				   = 'Search..';
+	$langNavbarRegister				   = 'Register';
+	$langNavbarLogin				   = 'Login';
+	$langNavbarLogoff				   = 'Logout';
+
+	$langNavbarProducts				   = 'Products';
+	$langNavbarOrders				   = 'Orders';
+	$langNavbarSearchResults		   = 'Searches';
 
 	// Contact pagina
 	$langContactTitle			       = 'Contact';

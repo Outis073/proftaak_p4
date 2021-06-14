@@ -14,6 +14,16 @@
 	$langContent                       = "welkom bij de site van VitaeBikes";
 
 	// Navbar
+	$langNavbarHome					   = 'Home';
+	$langNavbarContact				   = 'Contact';
+	$langNavbarSearch				   = 'Zoek..';
+	$langNavbarRegister				   = 'Registreer';
+	$langNavbarLogin				   = 'Login';
+	$langNavbarLogoff				   = 'Uitloggen';
+	
+	$langNavbarProducts				   = 'Producten';
+	$langNavbarOrders				   = 'Orders';
+	$langNavbarSearchResults		   = 'Zoek opdrachten';
 
 	// Contact pagina
 	$langContactTitle			       = 'Contact';
@@ -75,7 +85,7 @@
 
 	$langUserRegisterTelephone		   = 'Telefoon';
 	$langUserRegisterTelephoneErr	   = 'Vul aub telefoonnummer in';
-	
+
 	$langUserRegisterPassword		   = 'Wachtwoord';
 	$langUserRegisterPasswordErr	   = [1 => 'Vul aub wachtwoord in',
 									      2 => 'Wachtwoord moet minimaal 6 karakters zijn',
