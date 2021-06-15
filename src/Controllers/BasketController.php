@@ -4,9 +4,17 @@ class BasketController
 {
     public function index()
     {
+        if (!isset( $_SESSION['basket']))
+        {
+            $newBasket = new Basket();
+            $_SESSION['basket'] = serialize($newBasket);
+        }
+
+        $basket = unserialize($_SESSION['basket']);
+
         $view = new View('Basket');
         $view->set('title', 'Contact');
-
+        $view->set('bikes', $basket->get('bikes')); 
         $basket = new Basket();
 
         $view->render();
@@ -71,10 +79,28 @@ class BasketController
     public function save(){
         $basket = unserialize($_SESSION['basket']);
         $basket->save();
+
+        $view = new View('Home');
+        $view->set('models', Home::getActiveModels());
+        $view->render();
     }
 
     public function order(){
         Basket::order();
+
+        $view = new View('Home');
+        $view->set('models', Home::getActiveModels());
+        $view->render();
+    }
+
+    public function removeBike(){
+        $basket = unserialize($_SESSION['basket']);
+        $basket->removeBike($_POST['id']);
+        $_SESSION['basket'] = serialize($basket);
+
+        $view = new View('Basket');
+        $view->set('bikes', $basket->get('bikes'));
+        $view->render(); 
     }
 
 }

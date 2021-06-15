@@ -23,6 +23,11 @@ class Basket extends Model implements Serializable
     public function save(){
         $pdo = DB::connect();
 
+        $stmt = $pdo->prepare("CALL SPEmptyBasket( :id )");
+        $stmt->execute([
+            ':id' => $_SESSION['user_id']
+        ]);
+
         foreach($this->bikes as $bike){
             $stmt = $pdo->prepare("CALL SPAddBikeToBasket( :user_id, :model_id)");
             $stmt->execute([
@@ -58,6 +63,18 @@ class Basket extends Model implements Serializable
         $stmt->execute([
             ':id' => $_SESSION['user_id']
         ]);
+
+        unset($_SESSION['basket']);
+    }
+
+    public function removeBike($id){
+        foreach ($this->bikes as $bike) {
+            if($bike->get('id') == $id)
+            {
+                unset($this->get('bikes')[(array_search ($bike, $this->get('bikes')))]);
+                break;
+            }
+        }
     }
 
     public function serialize()
