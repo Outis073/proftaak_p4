@@ -9,7 +9,7 @@ class Model
         return $this->{$attribute};
     }
 
-    public function set(string $attribute, string $value)
+    public function set(string $attribute, $value)
     {
         $this->{$attribute} = $value;
     }

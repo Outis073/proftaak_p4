@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Basket' => $baseDir . '/src/Models/Basket.php',
+    'BasketController' => $baseDir . '/src/Controllers/BasketController.php',
+    'Bike' => $baseDir . '/src/Models/Bike.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Contact' => $baseDir . '/src/Models/Contact.php',
     'ContactController' => $baseDir . '/src/Controllers/ContactController.php',
@@ -646,5 +649,5 @@ return array(
     'UserController' => $baseDir . '/src/Controllers/UserController.php',
     'View' => $baseDir . '/src/Views/View.php',
     'order' => $baseDir . '/src/Models/Order.php',
-    'orderController' => $baseDir . '/src/Controllers/OrderController.php',
+    'orderController' => $baseDir . '/src/Controllers/orderController.php',
 );

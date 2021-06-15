@@ -12,8 +12,7 @@
         protected $telephone;
         protected $password;
         
-        public function __construct(string $email = '', string $firstName = '', string $lastName = '', string $street = '', string $houseNumber = '', 
-                                    string $postalCode = '', string $city = '', string $telephone = '', string $password = '', string $passwordCheck = '') {
+        public function __construct(string $email = '', string $firstName = '', string $lastName = '', string $street = '', string $houseNumber = '', string $postalCode = '', string $city = '', string $telephone = '', string $password = '', string $passwordCheck = '') {
 
             $this->email = $email;
             $this->firstName = $firstName;

@@ -24,7 +24,7 @@
             <td><a href="index.php?controller=Product&action=edit&id=<?php echo $product->get('id'); ?>">Model bewerken</a></td>
             <td><a href="index.php?controller=Product&action=delete&id=<?php echo $product->get('id'); ?>">Model verwijderen</a></td>
             <td>
-                <form method="post" action="index.php?controller=product&action=changePrice">
+                <form method="post" action="index.php?controller=Product&action=changePrice">
                 <input type="hidden" name="id" value="<?= $product->get('id') ?>">
                 <input type="text" placeholder="Prijs" name="newPrice" id="person" class="form-control" value="<?php echo isset($person) ? $person : ""; ?>" >
             </td>
@@ -40,7 +40,7 @@
     <?php endforeach; ?>
     </tbody>
 </table>
-    <form enctype="multipart/form-data" action="index.php?controller=product&action=addProducts" method="post">
+    <form enctype="multipart/form-data" action="index.php?controller=Product&action=addProducts" method="post">
             
         <label>Upload Product CSV file Here</label>
 

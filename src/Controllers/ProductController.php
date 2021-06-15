@@ -53,7 +53,9 @@ class ProductController
 
         $view->render();
     }
-
+    public function addToBasket(){
+        var_dump(unserialize($_SESSION['basket']));
+    }
 
     public function addProducts(){
         if(!$this->authorize())

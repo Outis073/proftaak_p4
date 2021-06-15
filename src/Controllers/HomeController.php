@@ -12,9 +12,23 @@
 
         public function getOptions()
     	{
+    		if (!isset($_POST['id']))
+            	throw new Exception('Geen model gevonden (how?)');
+    		
+    		if (!isset( $_SESSION['basket']))
+    		{
+    			$newBasket = new Basket();
+    			$_SESSION['basket'] = serialize($newBasket);
+    		}
+
+    		$newBike = new Bike("", $_POST['id']);
+    		$_SESSION['bike'] = serialize($newBike);
+
             $view = new View('Option');
             $view->set('title','Home');
             $view->set('content','Personaliseer je fiets');
+            $view->set('bike', $newBike);
+            $view->set('bikeOptions', $newBike->get('options'));
             $view->set('options', Home::getOptions());
 
             $view->render();

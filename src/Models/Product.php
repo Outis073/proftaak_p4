@@ -2,7 +2,7 @@
 //namespace Vitae\Models;
 //require_once 'vendor/autoload.php';
 
-class Product extends Model
+class Product extends Model implements Serializable
 {
     
     protected string $id;
@@ -104,13 +104,13 @@ class Product extends Model
         ]);
     }
 
-    public function getSingle($id)
+    public function getSingle()
     {
         $pdo = DB::connect();
 
-        $stmt = $pdo->prepare("SELECT * FROM Model WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT * FROM models WHERE id = :id");
         $stmt->execute([
-            ':id' => $id
+            ':id' => $this->id
         ]);
 
         $product = $stmt->fetch();
@@ -120,37 +120,14 @@ class Product extends Model
             $this->name = $product['name'];
             $this->description = $product['description'];
             $this->price = $product['price'];
+            $this->image = $product['image'];
             
             return $this;
         }
 
         throw new Exception('Record niet gevonden...');
     }
-/*
-    public function save()
-    {
-        $pdo = DB::connect();
-        if ( isset( $_POST['id'] ) )
-        {
-            $stmt = $pdo->prepare("UPDATE `tasks` SET `person` = :person, `title` = :title, `description` = :description WHERE `tasks`.`id` = :id");
-            $stmt->execute([
-                ':id' => $_POST['id'],
-                ':person' => $this->person,
-                ':title' => $this->title,
-                ':description' => $this->description
-            ]);
-        } else
-        {
-            $stmt = $pdo->prepare("INSERT INTO `tasks` (`person`, `title`, `description`) VALUES (:person, :title, :description) ");
-            $stmt->execute([
-                ':person' => $this->person,
-                ':title' => $this->title,
-                ':description' => $this->description
-            ]);
-        }
-    }
-*/
-
+    
     public function delete()
     {
         $pdo = DB::connect();
@@ -159,6 +136,28 @@ class Product extends Model
         $stmt->execute([
             ':id' => $this->id
         ]);
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->name,
+            $this->description,
+            $this->price,
+            $this->image
+        ]);
+    }
+
+    public function unserialize($data)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->description,
+            $this->price,
+            $this->image
+        ) = unserialize($data);
     }
 
 }

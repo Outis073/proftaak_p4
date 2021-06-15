@@ -71,6 +71,9 @@ class ComposerStaticInit7f2919a9f09e640b7198973c42d813df
     );
 
     public static $classMap = array (
+        'Basket' => __DIR__ . '/../..' . '/src/Models/Basket.php',
+        'BasketController' => __DIR__ . '/../..' . '/src/Controllers/BasketController.php',
+        'Bike' => __DIR__ . '/../..' . '/src/Models/Bike.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Contact' => __DIR__ . '/../..' . '/src/Models/Contact.php',
         'ContactController' => __DIR__ . '/../..' . '/src/Controllers/ContactController.php',
@@ -711,7 +714,7 @@ class ComposerStaticInit7f2919a9f09e640b7198973c42d813df
         'UserController' => __DIR__ . '/../..' . '/src/Controllers/UserController.php',
         'View' => __DIR__ . '/../..' . '/src/Views/View.php',
         'order' => __DIR__ . '/../..' . '/src/Models/Order.php',
-        'orderController' => __DIR__ . '/../..' . '/src/Controllers/OrderController.php',
+        'orderController' => __DIR__ . '/../..' . '/src/Controllers/orderController.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

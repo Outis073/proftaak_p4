@@ -2,7 +2,7 @@
 //namespace Vitae\Models;
 //require_once 'vendor/autoload.php';
 
-class Option extends Model
+class Option extends Model implements Serializable
 {
     
     protected string $id;
@@ -11,7 +11,7 @@ class Option extends Model
     protected string $category;
     protected string $image;
 
-    public function __construct(string $id = "", string $name = '', string $price = '', string $category = "", string $image = "")
+    public function __construct(string $id = "", string $name = "", string $price = "", string $category = "", string $image = "")
     {
         $this->id = $id;
         $this->name = $name;
@@ -20,23 +20,49 @@ class Option extends Model
         $this->image = $image;
     }
 
-    public static function addToBasket()
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->name,
+            $this->price,
+            $this->category,
+            $this->image
+        ]);
+    }
+
+    public function unserialize($data)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->price,
+            $this->category,
+            $this->image
+        ) = unserialize($data);
+    }
+
+    public function getSingle()
     {
         $pdo = DB::connect();
 
-        $stmt = $pdo->prepare("CALL SPGetOptions()");
-        $stmt->execute();
+        $stmt = $pdo->prepare("SELECT name, price, category, image FROM options WHERE id = :id");
+        $stmt->execute([
+            ':id' => $this->id
+        ]);
 
-        $productArray = [];
+        $option = $stmt->fetch();
 
-        $allProducts = $stmt->fetchAll();
-
-        foreach($allProducts as $product)
+        if($stmt->rowCount() > 0)
         {
-            array_push( $productArray, new Product($product['id'], $product['name'], $product['description'], $product['price'], $product['image']) );
+            $this->name = $option['name'];
+            $this->price = $option['price'];
+            $this->category = $option['category'];
+            $this->image = $option['image'];
+            
+            return $this;
         }
 
-        return $productArray;
+        throw new Exception('Record niet gevonden...');
     }
-
 }
