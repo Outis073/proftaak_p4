@@ -2,15 +2,15 @@
 
 <div class="jumbotron jumbotron-flud text-center">
 	<div class="container">
-		<h1 class="display-3"><?= $langTitle; ?></h1>
-		<p class="lead"><?= $langContent; ?></p>
+		<h1 class="display-3"><?= $langHomeTitle; ?></h1>
+		<p class="lead"><?= $langHomeContent; ?></p>
 
 		<div class="container">
 			<div class="row" id="benaming">
-				<div class="col-2">Name</div>
-				<div class="col-3">Image</div>
-				<div class="col-4">Description</div>
-				<div class="col-1">Price</div>
+				<div class="col-2"><?= $langHomeTableHeadName ?></div>
+				<div class="col-3"><?= $langHomeTableHeadImage ?></div>
+				<div class="col-4"><?= $langHomeTableHeadDescription ?></div>
+				<div class="col-1"><?= $langHomeTableHeadPrice ?></div>
 				<div class="col-2"></div>
 			</div>
 			<?php foreach ($models as $product) : ?>
@@ -22,7 +22,7 @@
 					<div class="col-2">
 						<form method="post" action="index.php?controller=Home&action=getOptions" enctype='multipart/form-data'>
 							<input type="hidden" name="id" value="<?= $product->get('id') ?>">
-							<a href="javascript:;" onclick="parentNode.submit();" class="btn btn-primary">Toevoegen aan
+							<a href="javascript:;" onclick="parentNode.submit();" class="btn btn-primary"><?= $langHomeAddButton ?>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
 									<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
 								</svg>
@@ -32,10 +32,10 @@
 				</div>
 			<?php endforeach; ?>
 			<form method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
-  				<input type='submit' value='Sla winkelwagen op' name='button'>
+  				<input type='submit' value='<?= $langHomeSaveButton ?>' name='button'>
 			</form>
 			<form method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
-  				<input type='submit' value='BESTEL NU!' name='button'>
+  				<input type='submit' value='<?= $langHomeOrderButton?>' name='button'>
 			</form>
 		</div>
 	</div>
