@@ -201,7 +201,7 @@
             $user = new User();
 
             $view = new View('User/login');
-            $view->set('title','Login');
+            //$view->set('title','Login');
             $view->set('content','Vul uw login gegevens in om aan te melden');
 
             // Controleer of er een POST is binnengekomen anders leeg formulier tonen
@@ -225,9 +225,10 @@
                 $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
                
                 if(empty($data['email'])) {
-                    $data['email_err'] = 'Vul aub email adres in';
+                    $data['email_err'] = 1; // Vul aub email adres in
+
                 } elseif (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false){
-                    $data['email_err'] = 'Onvolledig email adres, gebruik @ en .';               
+                    $data['email_err'] = 2; // Onvolledig email adres, gebruik @ en .
 
                   // Controleer of gebruiker/email in de database voorkomt
                 } elseif ($user->findUserByEmail($data['email'])) {
@@ -235,12 +236,12 @@
                      
                     } else {
                         // Geen gebruiker gevonden
-                        $data['email_err'] = 'Geen gebruiker gevonden';
+                        $data['email_err'] = 3;
                 }
             
                 // Valideer controle Password
                 if(empty($data['password'])) {
-                    $data['password_err'] = 'Vul aub wachtwoord in';
+                    $data['password_err'] = 1; // Vul aub wachtwoord in
                 }
                 // Wanneer er geen errors zijn kan de user data naar de database toe
                 if(empty($data['email_err']) && empty($data['password_err'])) {
@@ -251,7 +252,6 @@
 
 
                     // Inloggen gebruiker
-                   // $loggedInUser = $user->login($data['email'],$data['password']);
                    $loggedInUser = $user->login();
 
                     if($loggedInUser){
@@ -259,7 +259,7 @@
                         $this->createUserSession($loggedInUser);
 
                     } else {
-                        $data['password_err'] = 'Wachtwoord niet correct';
+                        $data['password_err'] = 2; // Wachtwoord niet correct
 
                         $view->set('email',$data['email']);
                         $view->set('password',$data['password']);
@@ -273,7 +273,7 @@
                 } else {
 
                     // Init data
-                    // Wanneer er errors in de input is, laat je de registratie pagina opnieuw zien
+                    // Wanneer er errors in de input zijn, laat je de registratie pagina opnieuw zien
                     $view->set('email',$data['email']);
                     $view->set('password',$data['password']);
                     

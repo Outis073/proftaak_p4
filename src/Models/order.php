@@ -42,7 +42,7 @@ class order extends Model
 
     //     return $orderArray;
     // }
-
+    
     public static function SPGetOrderHistoryUser($id)
     {
         $pdo = DB::connect();

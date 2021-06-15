@@ -1,15 +1,15 @@
 <?php require_once (__DIR__ . '/incl/header.php'); ?>
 
-<h1><?php echo "welkom " . $user; ?></h1>
-
-
-<?php echo $title; ?>
-<?php echo $langOrdercontent; ?>
-
+<h1><?php echo $langOrderGreeting .' '. $_SESSION['user_name']; ?></h1>
 
 <br>
 <br>
-<table id="customers">
+<p><?php echo $langOrderInfo?></p>
+<br>
+<br>
+
+
+<table>
   <thead>
     <tr>
       <td>id</td>
@@ -32,11 +32,5 @@
   </tbody>
 </table>
 
-
-<form action="order.php?controller=order&action=test" method="post">
-  <label for="descrpition">taak</label>
-  <input type="text" name="description"class="fom-control" id="">
-<input type="submit" value="function">
-</form>
 
 <?php require_once (__DIR__ . '/incl/footer.php'); ?>
