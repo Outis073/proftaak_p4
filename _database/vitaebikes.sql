@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 13 jun 2021 om 13:53
+-- Gegenereerd op: 15 jun 2021 om 05:35
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.11
 
@@ -72,7 +72,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SPCreateOrder` (IN `pID` INT(11), I
     SQL SECURITY INVOKER
 BEGIN
 INSERT INTO orders (user_id, date, delivery_method, payment_option) VALUES (pID, NOW(), pDeliveryMethod, pPaymentOption);
-UPDATE BIKES SET order_id = (SELECT SCOPE_IDENTITY()) WHERE id IN (SELECT bike_id FROM basket WHERE user_id = pID);
+SET @id = LAST_INSERT_ID();
+UPDATE BIKES SET order_id = (SELECT @id) WHERE id IN (SELECT bike_id FROM basket WHERE user_id = pID);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPDeactivateUser` (IN `pID` INT(11))  MODIFIES SQL DATA
@@ -88,6 +89,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SPFindOrderByID` (IN `pOrderID` INT
     FROM orders
     WHERE id = pOrderID;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetBikeOptions` (IN `pID` INT(11))  READS SQL DATA
+    SQL SECURITY INVOKER
+SELECT id, name, price, category, image FROM options WHERE id in (SELECT option_id FROM bikes_options WHERE bike_id = pID)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetBikesFromBasket` (IN `pID` INT(11))  READS SQL DATA
+    SQL SECURITY INVOKER
+SELECT id, model_id FROM bikes WHERE id in (SELECT bike_id FROM basket WHERE user_id = pID)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPGetFailedSearches` ()  READS SQL DATA
     SQL SECURITY INVOKER
@@ -224,7 +233,30 @@ INSERT INTO `bikes` (`id`, `model_id`, `order_id`, `status`) VALUES
 (15, 6, 11, ''),
 (16, 4, 12, ''),
 (17, 1, 1, 'hoi'),
-(18, 1, 1, 'hoi');
+(18, 1, 1, 'hoi'),
+(22, 27, NULL, ''),
+(23, 3, NULL, ''),
+(24, 5, NULL, ''),
+(25, 31, NULL, ''),
+(26, 6, NULL, ''),
+(29, 3, NULL, ''),
+(30, 5, NULL, ''),
+(32, 6, NULL, ''),
+(35, 3, NULL, ''),
+(36, 5, NULL, ''),
+(38, 6, NULL, ''),
+(41, 3, NULL, ''),
+(42, 5, NULL, ''),
+(45, 6, NULL, ''),
+(47, 3, NULL, ''),
+(48, 5, NULL, ''),
+(50, 6, NULL, ''),
+(53, 3, NULL, ''),
+(54, 5, NULL, ''),
+(57, 6, NULL, ''),
+(59, 5, NULL, ''),
+(62, 6, NULL, ''),
+(63, 5, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -271,7 +303,13 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `firstname`, `lastname`, `email`, `contacttext`) VALUES
-(1, 'test', 'test', 'test', 'test');
+(1, 'test', 'test', 'test', 'test'),
+(2, '111', '111', '111', '1111'),
+(3, '111', '111', '111', '1111'),
+(4, '', 'awdfa', '', ''),
+(5, '', 'awdfa', '', ''),
+(6, '', 'awawf', '', ''),
+(7, 'qwdq', 'qwfq', 'wqfwf@awfqwf', 'qwfqw');
 
 -- --------------------------------------------------------
 
@@ -381,7 +419,11 @@ INSERT INTO `orders` (`id`, `user_id`, `date`, `delivery_date`, `delivery_method
 (9, 7, '2021-01-19 00:00:00', '2021-01-25 00:00:00', 'DHL', 'Mastercard', 'delivered'),
 (10, 7, '2021-03-18 00:00:00', '0000-00-00 00:00:00', '', 'Visa', 'open'),
 (11, 3, '2021-03-19 00:00:00', '0000-00-00 00:00:00', '', 'iDeal', 'open'),
-(12, 6, '2021-03-18 00:00:00', '0000-00-00 00:00:00', '', 'iDeal', 'open');
+(12, 6, '2021-03-18 00:00:00', '0000-00-00 00:00:00', '', 'iDeal', 'open'),
+(13, 1, '2021-06-15 05:17:47', '0000-00-00 00:00:00', 'q', 'aw', ''),
+(14, 1, '2021-06-15 05:17:59', '0000-00-00 00:00:00', 'q', 'aw', ''),
+(15, 1, '2021-06-15 05:23:53', '0000-00-00 00:00:00', 'eq', 'qew', ''),
+(16, 1, '2021-06-15 05:25:43', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
 
 -- --------------------------------------------------------
 
@@ -425,8 +467,7 @@ CREATE TABLE `searches` (
 --
 
 INSERT INTO `searches` (`id`, `term`, `date`) VALUES
-(1, 'wrong', '2021-04-30 21:31:08'),
-(2, 'blablabla', '2021-04-30 21:32:18');
+(1, 'wrong', '2021-04-30 21:31:08');
 
 -- --------------------------------------------------------
 
@@ -644,13 +685,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `bikes`
 --
 ALTER TABLE `bikes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT voor een tabel `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `models`
@@ -668,7 +709,7 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT voor een tabel `reviews`
@@ -680,7 +721,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT voor een tabel `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
