@@ -28,7 +28,7 @@ class Basket extends Model implements Serializable
             ':id' => $_SESSION['user_id']
         ]);
 
-        foreach($this->bikes as $bike){
+        foreach($this->get('bikes') as $bike){
             $stmt = $pdo->prepare("CALL SPAddBikeToBasket( :user_id, :model_id)");
             $stmt->execute([
                 ':user_id' => $_SESSION['user_id'],
@@ -41,7 +41,7 @@ class Basket extends Model implements Serializable
             $options = $bike->get('options');
 
             foreach($options as $option){
-                $stmt = $pdo->prepare("CALL SPAddBikeToBasket( :bike_id, :option_id)");
+                $stmt = $pdo->prepare("CALL SPAddOptionsToBike( :bike_id, :option_id)");
                 $stmt->execute([
                     ':bike_id' => $id,
                     ':option_id' => $option->get('id')
@@ -68,10 +68,12 @@ class Basket extends Model implements Serializable
     }
 
     public function removeBike($id){
-        foreach ($this->bikes as $bike) {
+        foreach ($this->get('bikes') as $key => $bike) {
             if($bike->get('id') == $id)
             {
-                unset($this->get('bikes')[(array_search ($bike, $this->get('bikes')))]);
+                $bikesArray = $this->get('bikes');
+                unset($bikesArray[$key]);
+                $this->set('bikes', $bikesArray);
                 break;
             }
         }

@@ -67,6 +67,7 @@ class BasketController
         $bikes = $basket->get('bikes');
         $bikes[] = $bike;
         $basket->set('bikes', $bikes);
+        $basket->save();
         $_SESSION['basket'] = serialize($basket);
 
 
@@ -86,7 +87,15 @@ class BasketController
     }
 
     public function order(){
-        Basket::order();
+        if (!isset( $_SESSION['basket']))
+        {
+            $newBasket = new Basket();
+            $_SESSION['basket'] = serialize($newBasket);
+        }
+
+        $basket = unserialize($_SESSION['basket']);
+
+        $basket->order();;
 
         $view = new View('Home');
         $view->set('models', Home::getActiveModels());
@@ -96,6 +105,7 @@ class BasketController
     public function removeBike(){
         $basket = unserialize($_SESSION['basket']);
         $basket->removeBike($_POST['id']);
+        $basket->save();
         $_SESSION['basket'] = serialize($basket);
 
         $view = new View('Basket');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 jun 2021 om 20:05
+-- Gegenereerd op: 15 jun 2021 om 22:12
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.11
 
@@ -72,8 +72,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SPCreateOrder` (IN `pID` INT(11), I
     SQL SECURITY INVOKER
 BEGIN
 INSERT INTO orders (user_id, date, delivery_method, payment_option) VALUES (pID, NOW(), pDeliveryMethod, pPaymentOption);
-SET @id = LAST_INSERT_ID();
-UPDATE BIKES SET order_id = (SELECT @id) WHERE id IN (SELECT bike_id FROM basket WHERE user_id = pID);
+UPDATE BIKES SET order_id = (SELECT LAST_INSERT_ID()) WHERE id IN (SELECT bike_id FROM basket WHERE user_id = pID);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPDeactivateUser` (IN `pID` INT(11))  MODIFIES SQL DATA
@@ -82,7 +81,7 @@ UPDATE USER SET active = 0 WHERE id = pID$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPEmptyBasket` (IN `pID` INT(11))  MODIFIES SQL DATA
     SQL SECURITY INVOKER
-DELETE FROM bikes WHERE id IN (SELECT bike_id FROM basket WHERE user_id = pID)$$
+DELETE FROM Basket WHERE user_id = pID$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SPFindOrderByID` (IN `pOrderID` INT(11))  BEGIN
 	SELECT *
@@ -266,7 +265,60 @@ INSERT INTO `bikes` (`id`, `model_id`, `order_id`, `status`) VALUES
 (77, 3, NULL, ''),
 (80, 4, NULL, ''),
 (82, 3, NULL, ''),
-(83, 6, NULL, '');
+(83, 6, NULL, ''),
+(85, 3, NULL, ''),
+(87, 5, NULL, ''),
+(88, 5, NULL, ''),
+(90, 5, NULL, ''),
+(93, 3, NULL, ''),
+(94, 6, NULL, ''),
+(96, 6, NULL, ''),
+(101, 3, NULL, ''),
+(102, 6, NULL, ''),
+(107, 6, NULL, ''),
+(109, 27, 37, ''),
+(110, 4, NULL, ''),
+(111, 31, 37, ''),
+(112, 6, NULL, ''),
+(114, 27, NULL, ''),
+(115, 3, NULL, ''),
+(116, 32, NULL, ''),
+(118, 6, NULL, ''),
+(119, 27, NULL, ''),
+(120, 31, NULL, ''),
+(121, 27, 38, ''),
+(122, 31, 38, ''),
+(123, 41, NULL, ''),
+(125, 22, NULL, ''),
+(126, 27, 40, ''),
+(127, 31, 40, ''),
+(128, 22, NULL, ''),
+(129, 1, NULL, ''),
+(130, 27, NULL, ''),
+(131, 31, NULL, ''),
+(132, 27, NULL, ''),
+(133, 31, NULL, ''),
+(134, 27, NULL, ''),
+(135, 31, NULL, ''),
+(136, 27, 41, ''),
+(137, 31, 41, ''),
+(138, 27, 41, ''),
+(139, 31, 41, ''),
+(140, 27, 42, ''),
+(141, 27, NULL, ''),
+(142, 27, NULL, ''),
+(143, 27, 43, ''),
+(144, 31, 43, ''),
+(145, 27, NULL, ''),
+(146, 27, NULL, ''),
+(147, 27, NULL, ''),
+(148, 27, NULL, ''),
+(149, 27, NULL, ''),
+(150, 27, NULL, ''),
+(151, 27, NULL, ''),
+(152, 27, NULL, ''),
+(153, 27, NULL, ''),
+(154, 27, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -284,6 +336,7 @@ CREATE TABLE `bikes_options` (
 --
 
 INSERT INTO `bikes_options` (`bike_id`, `option_id`) VALUES
+(1, 1),
 (1, 2),
 (1, 6),
 (5, 2),
@@ -292,7 +345,31 @@ INSERT INTO `bikes_options` (`bike_id`, `option_id`) VALUES
 (10, 3),
 (12, 5),
 (15, 3),
-(15, 5);
+(15, 5),
+(22, 7),
+(130, 1),
+(136, 2),
+(136, 5),
+(137, 7),
+(138, 3),
+(139, 6),
+(139, 7),
+(140, 5),
+(142, 3),
+(142, 5),
+(143, 3),
+(143, 5),
+(144, 2),
+(145, 3),
+(146, 4),
+(147, 4),
+(148, 4),
+(149, 4),
+(150, 4),
+(151, 5),
+(152, 4),
+(153, 5),
+(154, 5);
 
 -- --------------------------------------------------------
 
@@ -438,7 +515,29 @@ INSERT INTO `orders` (`id`, `user_id`, `date`, `delivery_date`, `delivery_method
 (18, 1, '2021-06-15 19:19:32', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
 (19, 1, '2021-06-15 19:20:32', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
 (20, 1, '2021-06-15 19:20:38', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
-(21, 1, '2021-06-15 20:00:49', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
+(21, 1, '2021-06-15 20:00:49', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(22, 1, '2021-06-15 20:26:33', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(23, 1, '2021-06-15 20:27:15', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(24, 1, '2021-06-15 20:29:59', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(25, 1, '2021-06-15 20:38:42', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(26, 1, '2021-06-15 20:42:32', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(27, 1, '2021-06-15 20:46:54', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(28, 1, '2021-06-15 20:48:18', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(29, 1, '2021-06-15 20:49:07', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(30, 1, '2021-06-15 20:50:14', '0000-00-00 00:00:00', 'test', 'test', ''),
+(31, 1, '2021-06-15 20:53:46', '0000-00-00 00:00:00', 'qwdq', 'qq w', ''),
+(32, 1, '2021-06-15 20:57:37', '0000-00-00 00:00:00', 'qwdq', 'qq w', ''),
+(33, 1, '2021-06-15 20:57:57', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(34, 1, '2021-06-15 21:01:51', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(35, 1, '2021-06-15 21:08:27', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(36, 1, '2021-06-15 21:13:19', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(37, 1, '2021-06-15 21:15:00', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(38, 1, '2021-06-15 21:20:35', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(39, 1, '2021-06-15 21:23:04', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(40, 1, '2021-06-15 21:27:58', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(41, 1, '2021-06-15 21:38:23', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(42, 1, '2021-06-15 21:39:17', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(43, 1, '2021-06-15 21:41:58', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
 
 -- --------------------------------------------------------
 
@@ -693,7 +792,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `bikes`
 --
 ALTER TABLE `bikes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT voor een tabel `contact`
@@ -717,7 +816,7 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT voor een tabel `reviews`
@@ -740,20 +839,6 @@ ALTER TABLE `users`
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
-
---
--- Beperkingen voor tabel `basket`
---
-ALTER TABLE `basket`
-  ADD CONSTRAINT `FK_basket_bikes` FOREIGN KEY (`bike_id`) REFERENCES `bikes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_basket_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Beperkingen voor tabel `bikes`
---
-ALTER TABLE `bikes`
-  ADD CONSTRAINT `FK_bikes_models` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_bikes_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Beperkingen voor tabel `bikes_options`
