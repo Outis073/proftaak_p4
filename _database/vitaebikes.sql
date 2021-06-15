@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 jun 2021 om 19:09
--- Serverversie: 10.4.17-MariaDB
--- PHP-versie: 8.0.0
+-- Gegenereerd op: 15 jun 2021 om 20:05
+-- Serverversie: 10.4.14-MariaDB
+-- PHP-versie: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -234,8 +234,10 @@ INSERT INTO `bikes` (`id`, `model_id`, `order_id`, `status`) VALUES
 (16, 4, 12, ''),
 (17, 1, 1, 'hoi'),
 (18, 1, 1, 'hoi'),
+(22, 27, NULL, ''),
 (23, 3, NULL, ''),
 (24, 5, NULL, ''),
+(25, 31, NULL, ''),
 (26, 6, NULL, ''),
 (29, 3, NULL, ''),
 (30, 5, NULL, ''),
@@ -254,7 +256,17 @@ INSERT INTO `bikes` (`id`, `model_id`, `order_id`, `status`) VALUES
 (57, 6, NULL, ''),
 (59, 5, NULL, ''),
 (62, 6, NULL, ''),
-(63, 5, NULL, '');
+(63, 5, NULL, ''),
+(65, 3, NULL, ''),
+(66, 5, NULL, ''),
+(68, 4, NULL, ''),
+(71, 3, NULL, ''),
+(72, 5, NULL, ''),
+(74, 4, NULL, ''),
+(77, 3, NULL, ''),
+(80, 4, NULL, ''),
+(82, 3, NULL, ''),
+(83, 6, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -329,9 +341,9 @@ CREATE TABLE `models` (
 --
 
 INSERT INTO `models` (`id`, `name`, `description`, `price`, `image`, `active`) VALUES
-(1, 'Vita-S', 'Vivamus efficitur efficitur ipsum id pulvinar. Aliquam sit amet felis nisl. Pellentesque hendrerit arcu ac est aliquet gravida. Etiam maximus iaculis purus vitae condimentum. Duis sit amet elit sit amet nunc congue venenatis in in quam. Integer ac gravida', '850.00', 'xvita-s.png', b'1'),
-(2, 'Vita-X', 'Suspendisse augue odio, placerat id nulla sit amet, feugiat vulputate purus. Vestibulum a rutrum elit. Praesent at ex vitae felis pretium volutpat. Phasellus commodo cursus nisi eu luctus. Orci varius natoque penatibus et magnis dis parturient montes, nas', '1375.00', 'xvita-x.png', b'1'),
-(3, 'Vita-L', 'Morbi lacinia commodo mauris a lacinia. Ut blandit non dolor ut elementum. Duis sed sodales tortor, at tincidunt quam. Integer congue erat sit amet nibh ultricies, pharetra pharetra mauris scelerisque. Donec quis magna at sem pharetra commodo. Etiam in po', '2000.00', 'xvita-l.png', b'1'),
+(1, 'Vita-S', 'goede fiets', '850.00', '', b'0'),
+(2, 'Vita-X', '', '1375.00', '', b'0'),
+(3, 'Vita-L', '', '2000.00', '', b'0'),
 (4, 'Vita-S', 'goede fiets', '900.00', '', b'0'),
 (5, 'Vita-X', '', '1500.00', '', b'0'),
 (6, 'Vita-L', '', '2100.00', '', b'0'),
@@ -343,10 +355,19 @@ INSERT INTO `models` (`id`, `name`, `description`, `price`, `image`, `active`) V
 (17, 'Vita-S', 'goede fiets', '10.00', 'emu.png', b'0'),
 (18, 'testname', 'testdescription', '4.00', '', b'0'),
 (19, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'0'),
+(27, 'Vita-L', 'Descriptie', '6.00', 'emu.png', b'1'),
+(31, 'nieuw model 1', 'description 2', '1.00', 'emu.png', b'1'),
+(32, 'nieuw model 2', 'Description 2', '2.00', '', b'1'),
 (33, 'nieuw model 3', 'Description 3', '3.00', '', b'0'),
 (34, 'nieuw model 3', 'Description 3', '17.00', '', b'0'),
 (35, 'nieuw model 3', 'Description 3', '364.00', '', b'0'),
-(36, 'nieuw model 3', 'Description 3', '151.00', '', b'0');
+(36, 'nieuw model 3', 'Description 3', '151.00', '', b'0'),
+(37, 'nieuw model 3', 'Description 3', '2346.00', '', b'1'),
+(38, 'Vita-S', 'goede fiets', '1111111.00', 'emu.png', b'1'),
+(39, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'1'),
+(40, 'nieuw model 1', 'description 2', '1.00', '', b'1'),
+(41, 'nieuw model 2', 'Description 2', '2.00', '', b'1'),
+(42, 'nieuw model 3', 'Description 3', '3.00', '', b'1');
 
 -- --------------------------------------------------------
 
@@ -412,7 +433,12 @@ INSERT INTO `orders` (`id`, `user_id`, `date`, `delivery_date`, `delivery_method
 (13, 1, '2021-06-15 05:17:47', '0000-00-00 00:00:00', 'q', 'aw', ''),
 (14, 1, '2021-06-15 05:17:59', '0000-00-00 00:00:00', 'q', 'aw', ''),
 (15, 1, '2021-06-15 05:23:53', '0000-00-00 00:00:00', 'eq', 'qew', ''),
-(16, 1, '2021-06-15 05:25:43', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
+(16, 1, '2021-06-15 05:25:43', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(17, 1, '2021-06-15 19:18:00', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(18, 1, '2021-06-15 19:19:32', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(19, 1, '2021-06-15 19:20:32', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(20, 1, '2021-06-15 19:20:38', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(21, 1, '2021-06-15 20:00:49', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
 
 -- --------------------------------------------------------
 
@@ -450,13 +476,6 @@ CREATE TABLE `searches` (
   `term` varchar(255) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Gegevens worden geëxporteerd voor tabel `searches`
---
-
-INSERT INTO `searches` (`id`, `term`, `date`) VALUES
-(1, 'wrong', '2021-04-30 21:31:08');
 
 -- --------------------------------------------------------
 
@@ -674,7 +693,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `bikes`
 --
 ALTER TABLE `bikes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT voor een tabel `contact`
@@ -698,7 +717,7 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT voor een tabel `reviews`
@@ -710,7 +729,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT voor een tabel `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
