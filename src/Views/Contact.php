@@ -22,7 +22,7 @@
                                 <div class="col-md-12">
                                     <input type="email" id="email" name="email" placeholder="<?= $langContactEmail ?>" class="form-control px-0 mb-4" required="required">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <textarea name="message" id="message" class="form-control px-0 mb-4" placeholder="<?= $langContactComment ?>" required="required"></textarea>
                                 </div>
                                 <div class="col-lg-6 col-10 mx-auto">
