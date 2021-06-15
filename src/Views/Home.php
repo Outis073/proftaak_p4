@@ -16,7 +16,7 @@
 							<div class="block">
 								<h2 class="font-weight-bold mb-4 font-size-60"><?php echo $product->get('name'); ?></h2>
 								<p class="mb-4"><?php echo $product->get('description'); ?></p>
-								<a class="btn btn-main" href="#about" role="button">Buy Now With €<?php echo $product->get('price'); ?></a>
+								<input type="hidden" name="id" value="<?= $product->get('id') ?>"><a class="btn btn-main" href="index.php?controller=Home&action=getOptions" role="button"><?= $langHomeAddButton; ?> €<?php echo $product->get('price'); ?></a>
 							</div>
 						</div>
 					</div>
