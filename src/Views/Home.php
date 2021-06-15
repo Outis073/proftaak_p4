@@ -16,7 +16,10 @@
 							<div class="block">
 								<h2 class="font-weight-bold mb-4 font-size-60"><?php echo $product->get('name'); ?></h2>
 								<p class="mb-4"><?php echo $product->get('description'); ?></p>
-								<input type="hidden" name="id" value="<?= $product->get('id') ?>"><a class="btn btn-main" href="index.php?controller=Home&action=getOptions" role="button"><?= $langHomeAddButton; ?> €<?php echo $product->get('price'); ?></a>
+								<form method="post" action="index.php?controller=Home&action=getOptions">
+									<input type="hidden" name="id" value="<?= $product->get('id') ?>">
+									<input class="btn btn-main" type='submit' value='<?= $langHomeAddButton; ?> €<?php echo $product->get('price'); ?>' name='button'>
+								</form>
 							</div>
 						</div>
 					</div>
