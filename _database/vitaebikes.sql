@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 jun 2021 om 22:12
--- Serverversie: 10.4.14-MariaDB
--- PHP-versie: 7.4.11
+-- Gegenereerd op: 15 jun 2021 om 22:39
+-- Serverversie: 10.4.17-MariaDB
+-- PHP-versie: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -418,9 +418,9 @@ CREATE TABLE `models` (
 --
 
 INSERT INTO `models` (`id`, `name`, `description`, `price`, `image`, `active`) VALUES
-(1, 'Vita-S', 'goede fiets', '850.00', '', b'0'),
-(2, 'Vita-X', '', '1375.00', '', b'0'),
-(3, 'Vita-L', '', '2000.00', '', b'0'),
+(1, 'Vita-S', 'Morbi lacinia commodo mauris a lacinia. Ut blandit non dolor ut elementum. Duis sed sodales tortor, at tincidunt quam. Integer congue erat sit amet nibh ultricies, pharetra pharetra mauris scelerisque. Donec quis magna at sem pharetra commodo. Etiam in po', '850.00', 'xvita-s.png', b'1'),
+(2, 'Vita-X', 'Suspendisse ac commodo est, sed rhoncus metus. Donec mattis, ante et ultrices mollis, ipsum elit vehicula urna, nec tristique risus augue non nulla. In tellus nunc, gravida sed ligula vitae, aliquam aliquam justo. Aenean a sagittis elit.', '1375.00', 'xvita-x.png', b'1'),
+(3, 'Vita-L', 'Suspendisse augue odio, placerat id nulla sit amet, feugiat vulputate purus. Vestibulum a rutrum elit. Praesent at ex vitae felis pretium volutpat. Phasellus commodo cursus nisi eu luctus.', '2000.00', 'xvita-l.png', b'1'),
 (4, 'Vita-S', 'goede fiets', '900.00', '', b'0'),
 (5, 'Vita-X', '', '1500.00', '', b'0'),
 (6, 'Vita-L', '', '2100.00', '', b'0'),
@@ -432,19 +432,10 @@ INSERT INTO `models` (`id`, `name`, `description`, `price`, `image`, `active`) V
 (17, 'Vita-S', 'goede fiets', '10.00', 'emu.png', b'0'),
 (18, 'testname', 'testdescription', '4.00', '', b'0'),
 (19, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'0'),
-(27, 'Vita-L', 'Descriptie', '6.00', 'emu.png', b'1'),
-(31, 'nieuw model 1', 'description 2', '1.00', 'emu.png', b'1'),
-(32, 'nieuw model 2', 'Description 2', '2.00', '', b'1'),
 (33, 'nieuw model 3', 'Description 3', '3.00', '', b'0'),
 (34, 'nieuw model 3', 'Description 3', '17.00', '', b'0'),
 (35, 'nieuw model 3', 'Description 3', '364.00', '', b'0'),
-(36, 'nieuw model 3', 'Description 3', '151.00', '', b'0'),
-(37, 'nieuw model 3', 'Description 3', '2346.00', '', b'1'),
-(38, 'Vita-S', 'goede fiets', '1111111.00', 'emu.png', b'1'),
-(39, 'Vita-X', 'Descriptie', '5.00', 'popcat popcorn.gif', b'1'),
-(40, 'nieuw model 1', 'description 2', '1.00', '', b'1'),
-(41, 'nieuw model 2', 'Description 2', '2.00', '', b'1'),
-(42, 'nieuw model 3', 'Description 3', '3.00', '', b'1');
+(36, 'nieuw model 3', 'Description 3', '151.00', '', b'0');
 
 -- --------------------------------------------------------
 
