@@ -18,7 +18,7 @@
 	$langHomeTableHeadDescription		   = 'Description';
 	$langHomeTableHeadPrice				   = 'Price';
 	
-	$langHomeAddButton					   = 'Add to';
+	$langHomeAddButton					   = 'Buy Now By';
 
 	$langHomeSaveButton					   = 'Save shopping cart';
 	$langHomeOrderButton				   = 'ORDER NOW!';
@@ -126,5 +126,3 @@
 	$langSearchTableHeaderName 	       = 'Name';
 	$langSearchTableHeaderDescription  = 'Description';
 	$langSearchNoResult 			   = 'No search result found... ';
-
-?>
