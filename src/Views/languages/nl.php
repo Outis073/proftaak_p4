@@ -20,7 +20,7 @@
 	$langHomeTableHeadDescription		   = 'Omschrijving';
 	$langHomeTableHeadPrice				   = 'Prijs';
 	
-	$langHomeAddButton					   = 'Toevoegen aan';
+	$langHomeAddButton					   = 'Koop Nu Voor';
 
 	$langHomeSaveButton					   = 'Sla winkelwagen op';
 	$langHomeOrderButton				   = 'BESTEL NU!';
@@ -127,5 +127,3 @@
 	$langSearchTableHeaderName 	       = 'Naam';
 	$langSearchTableHeaderDescription  = 'Omschrijving';
 	$langSearchNoResult 			   = 'Geen zoekresultaat gevonden...';
-	
-?>
