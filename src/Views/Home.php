@@ -6,9 +6,9 @@
 		<p class="lead"><?= $langHomeContent; ?></p>
 
 		<?php foreach ($models as $product) : ?>
-			<section class="section">
+			<section class="section mb-4">
 				<div class="container">
-					<div class="row">
+					<div class="row mb-4">
 						<div class="col-md-6 text-center mb-5 mb-md-0">
 							<img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available">
 						</div>
@@ -27,14 +27,16 @@
 			</section>
 		<?php endforeach; ?>
 
-
-		<form method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
-			<input type='submit' value='<?= $langHomeSaveButton ?>' name='button'>
-		</form>
-		<form method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
-			<input type='submit' value='<?= $langHomeOrderButton ?>' name='button'>
-		</form>
+		<div class="row mt-4">
+			<form class="col-md-6" method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
+				<input class="btn btn-main" type='submit' value='<?= $langHomeSaveButton ?>' name='button'>
+			</form>
+			<form class="col-md-6" method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
+				<input class="btn btn-main" type='submit' value='<?= $langHomeOrderButton ?>' name='button'>
+			</form>
+		</div>
 	</div>
 </div>
+
 
 <?php require_once('incl/footer.php'); ?>
