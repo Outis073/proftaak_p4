@@ -17,13 +17,16 @@ class Search extends Model
     {
         $pdo = DB::connect();
 
-        $stmt = $pdo->prepare('CALL spsearch(:search)');
+        $stmt = $pdo->prepare('CALL SPSearch(:search)');
 
         $stmt->execute([
             ':search' => $search
         ]);
 
-        $searchResults = $stmt->fetchAll();
+        $searchResults = [];
+        try{
+        $searchResults = $stmt->fetchAll();}
+        catch(Exception $e){}
 
         return $searchResults;
     }
