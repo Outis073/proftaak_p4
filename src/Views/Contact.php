@@ -26,7 +26,7 @@
                                     <textarea name="message" id="message" class="form-control px-0 mb-4" placeholder="<?= $langContactComment ?>" required="required"></textarea>
                                 </div>
                                 <div class="col-lg-6 col-10 mx-auto">
-                                    <input class="btn btn-primary w-100" type="submit" name="submit" value="<?= $langContactButton ?>">
+                                    <input class="btn btn-main-contact" type="submit" name="submit" value="<?= $langContactButton ?>">
                                 </div>
                             </form>
                         </div>
