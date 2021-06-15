@@ -41,7 +41,12 @@
 							<td><img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available"></td>
 							<td><?php echo $product->get('description'); ?></td>
 							<td><?php echo $product->get('price'); ?></td>
-							<td><input type="hidden" name="id" value="<?= $product->get('id') ?>"><a href="index.php?controller=Home&action=getOptions">Toevoegen aan winkelwagen</a></td>
+							<td>
+								<form method="post" action="index.php?controller=Home&action=getOptions" enctype='multipart/form-data'>
+									<input type="hidden" name="id" value="<?= $product->get('id') ?>">
+		                  			<input type='submit' value='Kopen' name='image_upload'>
+	                			</form>
+                			</td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
