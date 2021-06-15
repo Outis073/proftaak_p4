@@ -7,6 +7,7 @@
 		<p class="col-md-12 lead"><?= $langHomeContent; ?></p>
 	</div>
 
+	<h2> Vita Modellen </h2>
 	<?php foreach ($models as $product) : ?>
 		<section class="section section-products">
 			<div class="container">
@@ -16,7 +17,7 @@
 					</div>
 					<div class="col-md-6 align-self-center text-center text-md-left">
 						<div class="block">
-							<h2 class="font-weight-bold mb-4 font-size-60"><?php echo $product->get('name'); ?></h2>
+							<h3 class="font-weight-bold mb-4 font-size-60"><?php echo $product->get('name'); ?></h3>
 							<p class="mb-4 beschrijving"><?php echo $product->get('description'); ?></p>
 							<form method="post" action="index.php?controller=Home&action=getOptions">
 								<input type="hidden" name="id" value="<?= $product->get('id') ?>">

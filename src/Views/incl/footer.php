@@ -3,7 +3,7 @@
               <div class="col-md-4">
                      <h3>Vita<span>E-Bikes</span></h3>
                      <p class="footer-links">
-                            <a href="<?= 'index.php' ?>"><?= $langNavbarHome ?></a> |
+                            <a class="link-info" href="<?= 'index.php' ?>"><?= $langNavbarHome ?></a> |
                             <a href="<?= 'index.php?controller=Order&action=index' ?>"><?= $langNavbarOrders ?></a> |
                             <a href="<?= 'index.php?controller=Contact&action=index' ?>"><?= $langNavbarContact ?></a>
 
