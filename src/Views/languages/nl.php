@@ -102,13 +102,17 @@
 
 
 	//Order pagina
-
-	$langOrderGreeting 				  = 'Welkom';
-	$langOrderInfo					  = 'Uw order informatie:'
+	$langOrderGreeting 				   = 'Welkom';
+	$langOrderInfo					   = 'Uw order informatie:';
 	
+	//Zoek pagina
+	$langSearchTitle				   = 'Zoeken';
+	$langSearchContent 				   = 'Zoekresultaten';
 
-
+	$langSearchEmpty 				   = 'Geen zoekwaarde opgegeven. U ziet een overzicht van alle fietsen';
+	$langSearchLabel				   = 'U heeft gezocht op:';
+	$langSearchTableHeaderName 	       = 'Naam';
+	$langSearchTableHeaderDescription  = 'Omschrijving';
+	$langSearchNoResult 			   = 'Geen zoekresultaat gevonden...';
 	
-
-
 ?>
