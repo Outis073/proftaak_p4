@@ -50,6 +50,13 @@ div #product {
     padding: 20px 20px 20px 0px;
 }
 
+/* Option sectie */
+
+.section-options {
+    padding: 15px;    
+    border-bottom: 2px solid black;
+}
+
 /* Contact formulier */
 .form-control {
     border: 0;
@@ -106,6 +113,27 @@ div #product {
     font-size: 14px;
     font-weight: bold;
   }
+
+  .btn-main-option {
+    color: #fff;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 15px 40px;
+    display: inline-block;
+    background-color: #36c092 ;
+    background-image: linear-gradient(bottom, rgba(54,192,146,0) 0%, rgba(54,192,146,0.25) 100%);
+  }
+
+ .btn-main-account {
+    color: #fff;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 15px 40px;
+    display: inline-block;
+    background-color: #36a8c2;
+    box-shadow: 0 15px 40px rgba(54,168,194,0.5);
+    background-image: linear-gradient(bottom, rgba(54,168,194,0) 0%, rgba(54,168,194,0.25) 100%);
+ }
 
  .btn-taal{
     color: #fff;
