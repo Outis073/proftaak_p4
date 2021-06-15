@@ -5,39 +5,33 @@
 		<h1 class="display-3"><?= $langHomeTitle; ?></h1>
 		<p class="lead"><?= $langHomeContent; ?></p>
 
-		<div class="container">
-			<div class="row" id="benaming">
-				<div class="col-2"><?= $langHomeTableHeadName ?></div>
-				<div class="col-3"><?= $langHomeTableHeadImage ?></div>
-				<div class="col-4"><?= $langHomeTableHeadDescription ?></div>
-				<div class="col-1"><?= $langHomeTableHeadPrice ?></div>
-				<div class="col-2"></div>
-			</div>
-			<?php foreach ($models as $product) : ?>
-				<div class="row my-auto">
-					<div class="col-2"><?php echo $product->get('name'); ?></div>
-					<div class="col-3"><img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available" style="max-width:300px;"></div>
-					<div class="col-4"><?php echo $product->get('description'); ?></div>
-					<div class="col-1"><?php echo $product->get('price'); ?></div>
-					<div class="col-2">
-						<form method="post" action="index.php?controller=Home&action=getOptions" enctype='multipart/form-data'>
-							<input type="hidden" name="id" value="<?= $product->get('id') ?>">
-							<a href="javascript:;" onclick="parentNode.submit();" class="btn btn-primary"><?= $langHomeAddButton ?>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-									<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-								</svg>
-							</a>
-						</form>
+		<?php foreach ($models as $product) : ?>
+			<section class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 text-center mb-5 mb-md-0">
+							<img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available">
+						</div>
+						<div class="col-md-6 align-self-center text-center text-md-left">
+							<div class="block">
+								<h2 class="font-weight-bold mb-4 font-size-60"><?php echo $product->get('name'); ?></h2>
+								<p class="mb-4"><?php echo $product->get('description'); ?></p>
+								<a class="btn btn-main" href="#about" role="button">Buy Now With €<?php echo $product->get('price'); ?></a>
+							</div>
+						</div>
 					</div>
 				</div>
-			<?php endforeach; ?>
-			<form method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
-  				<input type='submit' value='<?= $langHomeSaveButton ?>' name='button'>
-			</form>
-			<form method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
-  				<input type='submit' value='<?= $langHomeOrderButton?>' name='button'>
-			</form>
-		</div>
-	</div>
+			</section>
+		<?php endforeach; ?>
 
-	<?php require_once('incl/footer.php'); ?>
+
+		<form method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
+			<input type='submit' value='<?= $langHomeSaveButton ?>' name='button'>
+		</form>
+		<form method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
+			<input type='submit' value='<?= $langHomeOrderButton ?>' name='button'>
+		</form>
+	</div>
+</div>
+
+<?php require_once('incl/footer.php'); ?>
