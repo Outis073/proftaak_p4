@@ -60,7 +60,7 @@
 	$langUserRegisterContent           = 'Register as a new customer';
 	
 	$langUserRegisterEmail			   = 'E-mail address';
-	$langUserRegisterEmailErr          = [ 1 => 'Please fill in password',
+	$langUserRegisterEmailErr          = [ 1 => 'Please fill in email address',
 									       2 => 'incomplete email address, use @ and .',
 									       3 => 'E-mail already in use'];
 
@@ -103,8 +103,17 @@
 
 
 	//Order pagina
-
 	$langOrderGreeting 				  = 'Welcome';
-	$langOrderInfo					  = 'Your order information:'
+	$langOrderInfo					  = 'Your order information:';
+	
+	//Zoek pagina
+	$langSearchTitle				   = 'Search';
+	$langSearchContent 				   = 'Search results';
+
+	$langSearchEmpty 				   = 'No search value specified. You see an overview of all bicycles';
+	$langSearchLabel				   = 'You searched for:';
+	$langSearchTableHeaderName 	       = 'Name';
+	$langSearchTableHeaderDescription  = 'Description';
+	$langSearchNoResult 			   = 'No search result found... ';
 	
 ?>

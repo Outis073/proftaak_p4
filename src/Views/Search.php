@@ -2,20 +2,20 @@
 
 <div class="jumbotron jumbotron-flud text-center">
 	<div class="container">
-		<h1 class="display-3"><?= $title; ?></h1>
-		<p class="lead"><?= $content; ?></p>
+		<h1 class="display-3"><?= $langSearchTitle; ?></h1>
+		<p class="lead"><?= $langSearchContent; ?></p>
 		<p></p>
-		<p>U heeft gezocht op: <strong><?= $search; ?></strong></p>
+		<p><?= $langSearchLabel ?> <strong><?php echo !$search ? $langSearchEmpty : $search; ?></strong></p>
 	</div>
 
 
-
+	<?php if(!empty($searchResults)): ?></p>
 	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Name</th>
-				<th>Description</th>
+				<th><?= $langSearchTableHeaderName ?></th>
+				<th><?= $langSearchTableHeaderDescription ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,6 +28,8 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+	<?php else: echo $langSearchNoResult ?>
+	<?php endif; ?>
 </div>
 
 <?php require_once ('incl/footer.php'); ?>
