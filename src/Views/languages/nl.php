@@ -9,9 +9,22 @@
 	// );
 	
 	// eerst lang + controller + variable 
+	
+	
 	// Home pagina
-	$langTitle                         = "Home";
-	$langContent                       = "welkom bij de site van VitaeBikes";
+	$langHomeTitle                         = 'Home';
+	$langHomeContent                       = 'Welkom bij de site van Vita E-Bikes';
+	
+	$langHomeTableHeadName				   = 'Naam';
+	$langHomeTableHeadImage				   = 'Afbeelding';
+	$langHomeTableHeadDescription		   = 'Omschrijving';
+	$langHomeTableHeadPrice				   = 'Prijs';
+	
+	$langHomeAddButton					   = 'Koop Nu Voor';
+
+	$langHomeSaveButton					   = 'Sla winkelwagen op';
+	$langHomeOrderButton				   = 'BESTEL NU!';
+	
 
 	// Navbar
 	$langNavbarHome					   = 'Home';
@@ -114,5 +127,3 @@
 	$langSearchTableHeaderName 	       = 'Naam';
 	$langSearchTableHeaderDescription  = 'Omschrijving';
 	$langSearchNoResult 			   = 'Geen zoekresultaat gevonden...';
-	
-?>

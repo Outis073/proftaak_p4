@@ -10,8 +10,19 @@
 
 	// eerst lang + controller + variable 
 	// Home pagina
-	$langTitle                         = "Home";
-	$langContent                       = "Welcome to VitaeBikes";
+	$langHomeTitle                         = "Home";
+	$langHomeContent                       = "Welcome to Vita E-Bikes";
+
+	$langHomeTableHeadName				   = 'Name';
+	$langHomeTableHeadImage				   = 'Image';
+	$langHomeTableHeadDescription		   = 'Description';
+	$langHomeTableHeadPrice				   = 'Price';
+	
+	$langHomeAddButton					   = 'Buy Now By';
+
+	$langHomeSaveButton					   = 'Save shopping cart';
+	$langHomeOrderButton				   = 'ORDER NOW!';
+	
 
 	// Navbar
 	$langNavbarHome					   = 'Home';
@@ -115,5 +126,3 @@
 	$langSearchTableHeaderName 	       = 'Name';
 	$langSearchTableHeaderDescription  = 'Description';
 	$langSearchNoResult 			   = 'No search result found... ';
-	
-?>

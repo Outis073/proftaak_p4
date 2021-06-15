@@ -10,24 +10,24 @@
 
 
 	<?php if(!empty($searchResults)): ?></p>
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th><?= $langSearchTableHeaderName ?></th>
-				<th><?= $langSearchTableHeaderDescription ?></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach($searchResults as $result) : ?>
+		<table>
+			<thead>
 				<tr>
-					<td><?php echo $result['id']; ?></td>
-					<td><?php echo $result['name']; ?></td>
-					<td><?php echo $result['description']; ?></td>
+					<th>ID</th>
+					<th><?= $langSearchTableHeaderName ?></th>
+					<th><?= $langSearchTableHeaderDescription ?></th>
 				</tr>
-			<?php endforeach; ?>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<?php foreach($searchResults as $result) : ?>
+					<tr>
+						<td><?php echo $result['id']; ?></td>
+						<td><?php echo $result['name']; ?></td>
+						<td><?php echo $result['description']; ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
 	<?php else: echo $langSearchNoResult ?>
 	<?php endif; ?>
 </div>

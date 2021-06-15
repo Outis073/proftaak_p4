@@ -12,21 +12,21 @@
 
                     <div class="col-lg-8 mx-auto">
                         <div class="bg-white rounded text-center p-5 shadow-down">
-                            <form action="index.php?controller=Contact&action=sendContactForm" method="post" class="row">
+                            <form action="index.php?controller=Contact&action=sendContactForm" method="POST" class="row">
                                 <div class="col-md-6">
-                                    <input type="text" id="name" name="Voornaam" placeholder="<?= $langContactFirstName ?>" class="form-control px-0 mb-4" required="required">
+                                    <input type="text" id="name" name="first_name" placeholder="<?= $langContactFirstName ?>" class="form-control px-0 mb-4" required="required">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" id="name" name="Achternaam" placeholder="<?= $langContactLastName ?>" class="form-control px-0 mb-4" required="required">
+                                    <input type="text" id="name" name="last_name" placeholder="<?= $langContactLastName ?>" class="form-control px-0 mb-4" required="required">
                                 </div>
                                 <div class="col-md-12">
                                     <input type="email" id="email" name="email" placeholder="<?= $langContactEmail ?>" class="form-control px-0 mb-4" required="required">
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <textarea name="message" id="message" class="form-control px-0 mb-4" placeholder="<?= $langContactComment ?>" required="required"></textarea>
                                 </div>
                                 <div class="col-lg-6 col-10 mx-auto">
-                                    <input class="btn btn-primary w-100" type="submit" name="submit" value="<?= $langContactButton ?>">
+                                    <input class="btn btn-main-contact" type="submit" name="submit" value="<?= $langContactButton ?>">
                                 </div>
                             </form>
                         </div>
