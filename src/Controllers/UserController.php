@@ -51,75 +51,75 @@
                 $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
                 
                 if(empty($data['email'])) {
-                    $data['email_err'] = 'Vul aub email adres in';
+                    $data['email_err'] = 1; // Vul aub email adres in
                 } elseif (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false){
-                    $data['email_err'] = 'Onvolledig email adres, gebruik @ en .';
+                    $data['email_err'] = 2; // Onvolledig email adres, gebruik @ en .
                 } else {
                     // Check of email adres al voorkomt in de database (email moet uniek zijn)
                     if($user->findUserByEmail($data['email'])) {
-                        $data['email_err'] = 'Email al in gebruik';
+                        $data['email_err'] = 3; // Email al in gebruik
                     }
                 }
 
                 // Valideer firstName
                 if(empty($data['firstName'])) {
-                    $data['firstName_err'] = 'Vul aub voornaam in';
+                    $data['firstName_err'] = 1; // Vul aub voornaam in
                 }
 
                 // Valideer lastName
                 if(empty($data['lastName'])) {
-                    $data['lastName_err'] = 'Vul aub achternaam in';
+                    $data['lastName_err'] = 1; // Vul aub achternaam in
                 }
 
                 // Valideer street
                 if(empty($data['street'])) {
-                    $data['street_err'] = 'Vul aub woonplaats in';
+                    $data['street_err'] = 1; // Vul aub woonplaats in
                 }
 
                 // Valideer houseNumber
                 if(empty($data['houseNumber'])) {
-                    $data['houseNumber_err'] = 'Vul aub huisnummer in';
+                    $data['houseNumber_err'] = 1; // Vul aub huisnummer in
                 }
 
                 // Valideer postalCode
                 if(empty($data['postalCode'])) {
-                    $data['postalCode_err'] = 'Vul aub postcode in';
+                    $data['postalCode_err'] = 1; // Vul aub postcode in
                 } elseif (!strpos($data['postalCode'], ' ') === false) {
-                    $data['postalCode_err'] = 'Geen spaties in de postcode gebruiken';
+                    $data['postalCode_err'] = 2; // Geen spaties in de postcode gebruiken
                 } elseif (strlen($data['postalCode']) > 6){
-                    $data['postalCode_err'] = 'Postcode maximaal 6 karakters';
+                    $data['postalCode_err'] = 3; // Postcode maximaal 6 karakters
                 }
 
                 // Valideer city
                 if(empty($data['city'])) {
-                    $data['city_err'] = 'Vul aub woonplaats in';
+                    $data['city_err'] = 1; // Vul aub woonplaats in
                 }
 
                 // Valideer telephone
                 if(empty($data['telephone'])) {
-                    $data['telephone_err'] = 'Vul aub telefoonnummer in';
+                    $data['telephone_err'] = 1; // Vul aub telefoonnummer in
                 }
               
                 // Valideer wachtwoord
                 // Moet bestaan uit minimaal 6 karakters, kleine letters, hoofdletters en cijfers
                 if(empty($data['password'])) {
-                    $data['password_err'] = 'Vul aub wachtwoord in';
+                    $data['password_err'] = 1; // Vul aub wachtwoord in
                 } elseif ((strlen($data['password'])) < 6) {
-                    $data['password_err'] = 'Wachtwoord moet minimaal 6 karakters zijn';
+                    $data['password_err'] = 2; // Wachtwoord moet minimaal 6 karakters zijn
                 } elseif (!preg_match("#[0-9]+#", $data['password'] )) {
-                    $data['password_err'] = 'Wachtwoord moet een cijfer bevatten';
+                    $data['password_err'] = 3; // Wachtwoord moet een cijfer bevatten
                 } elseif (!preg_match("#[a-z]+#", $data['password'] )) {
-                    $data['password_err'] = 'Wachtwoord moet een letter bevatten';
+                    $data['password_err'] = 4; // Wachtwoord moet een letter bevatten
                 } elseif (!preg_match("#[A-Z]+#", $data['password'] )) {
-                    $data['password_err'] = 'Wachtwoord moet een hoofdletter bevatten';
+                    $data['password_err'] = 5; // Wachtwoord moet een hoofdletter bevatten
                 } 
 
                 // Valideer controle Password
                 if(empty($data['passwordCheck'])) {
-                    $data['passwordCheck_err'] = 'Vul aub wachtwoord ter controle in';
+                    $data['passwordCheck_err'] = 1; // Vul aub wachtwoord ter controle in
                 } else {
                     if($data['password'] != $data['passwordCheck']) {
-                        $data['passwordCheck_err'] = 'Wachtwoorden zijn niet gelijk';
+                        $data['passwordCheck_err'] = 2; // Wachtwoorden zijn niet gelijk
                     }
                 }
                 
