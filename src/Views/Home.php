@@ -46,6 +46,12 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<form method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
+  				<input type='submit' value='Sla winkelwagen op' name='button'>
+			</form>
+			<form method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
+  				<input type='submit' value='BESTEL NU!' name='button'>
+			</form>
 		</div>
 	</div>
 
