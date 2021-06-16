@@ -77,7 +77,4 @@
 </div>
 
 
-<div><?php echo $product->get('id'); ?></div>
-
-
 <?php require_once(__DIR__ . '/incl/footer.php'); ?>
