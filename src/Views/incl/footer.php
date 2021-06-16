@@ -12,7 +12,7 @@
               </div>
               <div class="col-md-4">
                      <div>
-                            <p><i class="fa fa-map-marker"></i> <span>Hogeschoollaan 0A</span> Noort-brabant, Nederland</p>
+                            <p><i class="fa fa-map-marker"></i> <span>Hogeschoollaan 0A</span> Noord-brabant, Nederland</p>
                      </div>
                      <div>
                             <p><i class="fa fa-phone"></i> +31 6-12345678</p>
