@@ -31,10 +31,8 @@
 	<?php endforeach; ?>
 
 	<div class="row mt-4 dots-row">
-		<form class="col-md-6 " method="post" action="index.php?controller=Basket&action=save" enctype='multipart/form-data'>
-			<input class="btn btn-main" type='submit' value='<?= $langHomeSaveButton ?>' name='button'>
-		</form>
-		<form class="col-md-6" method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
+
+		<form class="col-md-12" method="post" action="index.php?controller=Basket&action=order" enctype='multipart/form-data'>
 			<input class="btn btn-main" type='submit' value='<?= $langHomeOrderButton ?>' name='button'>
 		</form>
 	</div>

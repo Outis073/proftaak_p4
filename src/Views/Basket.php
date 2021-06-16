@@ -17,7 +17,7 @@
 					<div class="col-6 mb-4">
 						<h2><?php echo $bike->get('model')->get('name'); ?></h2>
 					</div>
-					<div class="col-6 mb-4"><img src="src/images/<?php echo $bike->get('model')->get('image'); ?>" alt="No image available"></div>
+					<div class="col-6 mb-4"><img src="src/Images/<?php echo $bike->get('model')->get('image'); ?>" alt="No image available"></div>
 
 					<div class="col-2"><strong>
 							<p>Prijs fiets:</p>€ <?php echo $bike->get('model')->get('price'); ?>
