@@ -4,27 +4,29 @@ class ProductController
 {
     public function index()
     {
-        if(!$this->authorize())
+        if (!$this->authorize())
             throw new Exception('Geen Admin');
 
         $view = new View('product');
-        $view->set('title', 'Taken');
+        $view->set('title', 'Beheer');
         $view->set('products', Product::getAll());
 
         $view->render();
     }
 
-    function authorize(){
-        if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] == "customer")
+    function authorize()
+    {
+        if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] == "customer")
             return false;
         return true;
     }
 
-    public function changePrice(){
-        if(!$this->authorize())
+    public function changePrice()
+    {
+        if (!$this->authorize())
             throw new Exception('Geen Admin');
 
-        if (!isset( $_POST['newPrice']) || !isset( $_POST['id']))
+        if (!isset($_POST['newPrice']) || !isset($_POST['id']))
             throw new Exception('Geen prijs/ID gevonden!');
 
         $product = new Product($_POST['id'], "", "", $_POST['newPrice'], "");
@@ -37,11 +39,12 @@ class ProductController
         $view->render();
     }
 
-    public function addImage(){
-        if(!$this->authorize())
+    public function addImage()
+    {
+        if (!$this->authorize())
             throw new Exception('Geen Admin');
 
-        if (!isset( $_POST['image_upload']) || !isset( $_POST['id']))
+        if (!isset($_POST['image_upload']) || !isset($_POST['id']))
             throw new Exception('Geen afbeelding/ID gevonden!');
 
         $product = new Product();
@@ -53,19 +56,19 @@ class ProductController
 
         $view->render();
     }
-    public function addToBasket(){
+    public function addToBasket()
+    {
         var_dump(unserialize($_SESSION['basket']));
     }
 
-    public function addProducts(){
-        if(!$this->authorize())
+    public function addProducts()
+    {
+        if (!$this->authorize())
             throw new Exception('Geen Admin');
 
-        if (isset($_POST['csvModels'])) 
-        {
+        if (isset($_POST['csvModels'])) {
             $handle = fopen($_FILES['filename']['tmp_name'], "r");
-            while (($data = fgetcsv($handle, 10000, ",")) !== FALSE) 
-            {
+            while (($data = fgetcsv($handle, 10000, ",")) !== FALSE) {
                 $product = new Product("", $data[0], $data[1], $data[2], "");
                 $product->addModel();
             }

@@ -57,6 +57,20 @@ div #product {
     border-bottom: 2px solid black;
 }
 
+/* Admin poage */
+.container-admin {
+    padding: 0px 100px 0px 100px;
+}
+
+.bike-section {
+    padding: 45px;    
+    border-bottom: 2px solid black;    
+}
+
+.admin-csv {
+    padding-top: 50px;
+}
+
 /* Contact formulier */
 .form-control {
     border: 0;
@@ -135,13 +149,33 @@ div #product {
     background-image: linear-gradient(bottom, rgba(54,168,194,0) 0%, rgba(54,168,194,0.25) 100%);
  }
 
+ .btn-main-admin {
+    color: #fff;
+    border-radius: 15px;
+    font-size: 16px;
+    padding: 8px 20px;
+    display: inline-block;
+    background-color: #36c092;
+    background-image: linear-gradient(bottom, rgba(54,192,146,0) 0%, rgba(54,192,146,0.25) 100%);
+  }
+
+  .btn-main-admin-edit {
+    color: #fff;
+    border-radius: 15px;
+    font-size: 16px;
+    padding: 8px 20px;
+    display: inline-block;
+    background-color: #36a8c2;
+    background-image: linear-gradient(bottom, rgba(54,192,146,0) 0%, rgba(54,192,146,0.25) 100%);
+  }
+
  .btn-taal{
     color: #fff;
     border-radius: 30px;
     font-size: 12px;
     padding: 8px 20px;
     margin: 5px;
-    background-color: #36c092 ;
+    background-color: #36c092;
     background-image: linear-gradient(bottom, rgba(54,192,146,0) 0%, rgba(54,192,146,0.25) 100%);
  }
 
