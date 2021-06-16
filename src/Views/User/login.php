@@ -19,12 +19,12 @@
 
                         <div class="col-md-12">
 
-                            <input type="text" name="email" id="user" class="form-control px-0 mb-4" <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" placeholder="<?= $langUserLoginEmailPH ?>">
+                            <input type="text" name="email" id="user" class="form-control px-0 mb-4 <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>" placeholder="<?= $langUserLoginEmailPH ?>">
                             <span class="invalid-feedback"><?= $langUserLoginEmailErr[$email_err] ?></span>
                         </div>
                         <div class="col-md-12">
 
-                            <input type="password" name="password" id="password" class="form-control px-0 mb-4" <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" placeholder="<?= $langUserLoginPasswordPH ?>">
+                            <input type="password" name="password" id="password" class="form-control px-0 mb-4 <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" placeholder="<?= $langUserLoginPasswordPH ?>">
                             <span class="invalid-feedback"><?= $langUserLoginPasswordErr[$password_err] ?></span>
                         </div>
                         <div class="row mt-4">
