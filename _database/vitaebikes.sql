@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 jun 2021 om 22:39
--- Serverversie: 10.4.17-MariaDB
--- PHP-versie: 8.0.0
+-- Gegenereerd op: 16 jun 2021 om 16:02
+-- Serverversie: 10.4.18-MariaDB
+-- PHP-versie: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -197,6 +197,14 @@ CREATE TABLE `basket` (
   `bike_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `basket`
+--
+
+INSERT INTO `basket` (`user_id`, `bike_id`) VALUES
+(1, 164),
+(1, 165);
+
 -- --------------------------------------------------------
 
 --
@@ -318,7 +326,19 @@ INSERT INTO `bikes` (`id`, `model_id`, `order_id`, `status`) VALUES
 (151, 27, NULL, ''),
 (152, 27, NULL, ''),
 (153, 27, NULL, ''),
-(154, 27, NULL, '');
+(154, 27, NULL, ''),
+(155, 1, NULL, ''),
+(156, 1, 44, ''),
+(157, 2, 46, ''),
+(158, 1, NULL, ''),
+(159, 1, NULL, ''),
+(160, 1, NULL, ''),
+(161, 1, NULL, ''),
+(162, 1, NULL, ''),
+(163, 1, NULL, ''),
+(164, 1, NULL, ''),
+(165, 1, NULL, ''),
+(166, 1, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -369,7 +389,18 @@ INSERT INTO `bikes_options` (`bike_id`, `option_id`) VALUES
 (151, 5),
 (152, 4),
 (153, 5),
-(154, 5);
+(154, 5),
+(156, 3),
+(156, 5),
+(157, 3),
+(158, 3),
+(159, 3),
+(160, 3),
+(161, 3),
+(162, 3),
+(163, 3),
+(164, 3),
+(165, 3);
 
 -- --------------------------------------------------------
 
@@ -396,7 +427,8 @@ INSERT INTO `contact` (`id`, `firstname`, `lastname`, `email`, `contacttext`) VA
 (4, '', 'awdfa', '', ''),
 (5, '', 'awdfa', '', ''),
 (6, '', 'awawf', '', ''),
-(7, 'qwdq', 'qwfq', 'wqfwf@awfqwf', 'qwfqw');
+(7, 'qwdq', 'qwfq', 'wqfwf@awfqwf', 'qwfqw'),
+(8, 'dssdfsd', 'sdfsdf', 'fdsfsdf@aa.nl', 'asdasdasdas');
 
 -- --------------------------------------------------------
 
@@ -458,12 +490,12 @@ CREATE TABLE `options` (
 
 INSERT INTO `options` (`id`, `name`, `price`, `category`, `image`, `active`) VALUES
 (1, 'Fietstas model A', '65.00', 'Tassen', 'jerma rat gif.gif', b'0'),
-(2, 'Fietstas model B', '43.00', 'Tassen', 'jerma rat gif.gif', b'1'),
-(3, 'Fietscomputer Extra', '125.00', 'Computers', 'jerma rat gif.gif', b'1'),
-(4, 'Stuur model A', '78.00', 'Sturen', '', b'1'),
-(5, 'Kleur frame Wit metalic', '75.00', 'Frame', '', b'1'),
-(6, 'Kleur frame Rood metalic', '75.00', 'Frame', '', b'1'),
-(7, 'Kleur frame Blauw metalic', '75.00', 'Frame', '', b'1');
+(2, 'Fietstas model B', '43.00', 'Tassen', 'Fietstas model B.jpg', b'1'),
+(3, 'Fietscomputer Extra', '125.00', 'Computers', 'Fietscomputer.jpg', b'1'),
+(4, 'Stuur model A', '78.00', 'Sturen', 'Fietsstuur 1.jpg', b'1'),
+(5, 'Kleur frame Wit metalic', '75.00', 'Frame', 'Wit metalic.jpg', b'1'),
+(6, 'Kleur frame Rood metalic', '75.00', 'Frame', 'Rood metalic.jpg', b'1'),
+(7, 'Kleur frame Blauw metalic', '75.00', 'Frame', 'Blauw metalic.jpg', b'1');
 
 -- --------------------------------------------------------
 
@@ -528,7 +560,11 @@ INSERT INTO `orders` (`id`, `user_id`, `date`, `delivery_date`, `delivery_method
 (40, 1, '2021-06-15 21:27:58', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
 (41, 1, '2021-06-15 21:38:23', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
 (42, 1, '2021-06-15 21:39:17', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
-(43, 1, '2021-06-15 21:41:58', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
+(43, 1, '2021-06-15 21:41:58', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(44, 1, '2021-06-16 09:37:50', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(45, 1, '2021-06-16 13:20:55', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(46, 1, '2021-06-16 13:21:11', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', ''),
+(47, 2, '2021-06-16 16:00:53', '0000-00-00 00:00:00', 'Just throw it really hard', 'I.O.U.', '');
 
 -- --------------------------------------------------------
 
@@ -567,6 +603,13 @@ CREATE TABLE `searches` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `searches`
+--
+
+INSERT INTO `searches` (`id`, `term`, `date`) VALUES
+(14, 'asdfsdfsdfsdfsdf', '2021-06-16 09:42:51');
+
 -- --------------------------------------------------------
 
 --
@@ -604,7 +647,8 @@ INSERT INTO `users` (`id`, `email`, `password_salt`, `password_hash`, `first_nam
 (8, 'a.vd.ven@hotmail.nl', '', '', 'Bennie', 'Striker', 'Singel', '3', '2596LL', 'Zaandam', '', b'1', ''),
 (9, 'b_strijker@hotmail.com', '', '', 'Bennie', 'Striker', 'Strijkstok', '1', '2345AB', 'Breukelen', '', b'0', ''),
 (10, 'Nep.Email@haha.com', '', '$2y$10$avVYCMrOxzGJPjW1/j4hHeJkR0wCismR4gaPnlqaBvBCGI0.6IUNq', 'Nep voornaam', 'Nep achternaam', 'Nepstraat', '1', '1234AB', 'Eindhoven', '12345678', b'1', 'customer'),
-(11, 'testmail@test.com', '', '$2y$10$AGMlk8C5PvP2zj8x4NfV/ulfunJ.SNbMbYe4jGCv3LahPsdDEQnBq', 'test', 'test', 'test', '12', '1234BC', 'Eindhoven', '12345678', b'1', 'customer');
+(11, 'testmail@test.com', '', '$2y$10$AGMlk8C5PvP2zj8x4NfV/ulfunJ.SNbMbYe4jGCv3LahPsdDEQnBq', 'test', 'test', 'test', '12', '1234BC', 'Eindhoven', '12345678', b'1', 'customer'),
+(12, 'peter.moorthamer@outlook.com', '', '$2y$10$tNs1YwK8gFUDKCNSoPNyG.RuYgEftCM8kE8MyE6N2pOaIV7qKRd2q', 'Peter', 'Moorthamer', 'Van Middelhovenstraat', '91', '4571AC', 'Axel', '+31115720114', b'1', 'customer');
 
 -- --------------------------------------------------------
 
@@ -783,13 +827,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `bikes`
 --
 ALTER TABLE `bikes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT voor een tabel `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT voor een tabel `models`
@@ -807,7 +851,7 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT voor een tabel `reviews`
@@ -819,13 +863,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT voor een tabel `searches`
 --
 ALTER TABLE `searches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
