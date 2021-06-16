@@ -9,47 +9,50 @@
 
 
     <?php foreach ($products as $product) : ?>
-        <div class="row align-items-center mt-4 justify-content-center bike-section">
-            <div class="col-12 mb-4">
-                <h2><?php echo $product->get('name'); ?></h2>
+        <div class="container bike-section">
+            <div class="row align-items-center mt-4 justify-content-center">
+                <div class="col-12 mb-4">
+                    <h2><?php echo $product->get('name'); ?></h2>
+                </div>
+                <div class="col-12 border border-info p-3 mb-4">
+                    <h5>Beschrijving</h5><br> <?php echo $product->get('description'); ?>
+                </div>
+                <div class="col-12">
+
+
+                    <form class="form form-inline d-flex justify-content-center" method="post" action="index.php?controller=Product&action=changePrice">
+                        <strong class="mr-4">€ <?php echo $product->get('price'); ?></strong>
+                        <input type="hidden" name="id" value="<?= $product->get('id') ?>">
+                        <input type="text" placeholder="Prijs" name="newPrice" id="person" class="form-control px-0 mb-4 ml-4" value="<?php echo isset($person) ? $person : ""; ?>">
+
+                        <button type="submit" name="submit_button" class="btn btn-main-admin ml-4">Prijs veranderen</button>
+
+                    </form>
+
+                </div>
+                <div class="col-12 mb-3"><img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available"></div>
+                <div class="row">
+                    <div class="col-12 mb-3 mx-auto">
+                        <h5> Afbeelding toevoegen</h5><br>
+                        <form class="form-inline mx-auto" method="post" action="index.php?controller=product&action=addImage" enctype='multipart/form-data'>
+                            <input class="form-control" type='file' id="formfile" name='file' />
+                            <input type="hidden" name="id" value="<?= $product->get('id') ?>">
+                            <input class="btn btn-main-admin" type='submit' value="Afbeelding opslaan" name='image_upload'>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="col-12 mt-4">
+                    <a class="btn btn-main-admin-edit" href="index.php?controller=Product&action=edit&id=<?php echo $product->get('id'); ?>">Model bewerken</a>
+                    <a class="btn btn-main-admin-edit ml-2" href="index.php?controller=Product&action=delete&id=<?php echo $product->get('id'); ?>">Model verwijderen</a>
+                </div>
+
             </div>
-            <div class="col-12 border border-info p-3 mb-4">
-                <h5>Beschrijving</h5><br> <?php echo $product->get('description'); ?>
-            </div>
-            <div class="col-12">
-
-
-                <form class="form form-inline d-flex justify-content-center" method="post" action="index.php?controller=Product&action=changePrice">
-                    <strong class="mr-4">€ <?php echo $product->get('price'); ?></strong>
-                    <input type="hidden" name="id" value="<?= $product->get('id') ?>">
-                    <input type="text" placeholder="Prijs" name="newPrice" id="person" class="form-control px-0 mb-4 ml-4" value="<?php echo isset($person) ? $person : ""; ?>">
-
-                    <button type="submit" name="submit_button" class="btn btn-main-admin ml-4">Prijs veranderen</button>
-
-                </form>
-
-            </div>
-            <div class="col-6 mb-3"><img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available"></div>
-
-            <div class="col-6 mb-3">
-                <h5> Afbeelding toevoegen</h5><br>
-                <form class="form-inline" method="post" action="index.php?controller=product&action=addImage" enctype='multipart/form-data'>
-                    <input class="form-control" type='file' id="formfile" name='file' />
-                    <input type="hidden" name="id" value="<?= $product->get('id') ?>">
-                    <input class="btn btn-main-admin" type='submit' value="Afbeelding opslaan" name='image_upload'>
-                </form>
-            </div>
-
-
-
-
-
-
-            <div class="col-12 mt-4">
-                <a class="btn btn-main-admin-edit" href="index.php?controller=Product&action=edit&id=<?php echo $product->get('id'); ?>">Model bewerken</a>
-                <a class="btn btn-main-admin-edit ml-2" href="index.php?controller=Product&action=delete&id=<?php echo $product->get('id'); ?>">Model verwijderen</a>
-            </div>
-
         </div>
 
     <?php endforeach; ?>
