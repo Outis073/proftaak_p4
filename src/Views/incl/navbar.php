@@ -30,7 +30,7 @@
             </ul>
             <?php if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] == "customer") : ?>
                 <div class="search-container">
-                    <form class="search" action="./?controller=search" method="POST">
+                    <form class="search" action="./?controller=Search" method="POST">
                         <input type="text" placeholder="<?= $langNavbarSearch ?>" name="search" />
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
@@ -40,17 +40,17 @@
             <ul class="navbar-nav ml-auto">
                 <?php if (isset($_SESSION['user_id'])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="./?controller=user&action=logout"><?= $langNavbarLogoff ?></a>
+                        <a class="nav-link" href="./?controller=User&action=logout"><?= $langNavbarLogoff ?></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"><?= $_SESSION['user_name'] ?></a>
                     </li>
                 <?php else : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="./?controller=user&action=register"><?= $langNavbarRegister ?></a>
+                        <a class="nav-link" href="./?controller=User&action=register"><?= $langNavbarRegister ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./?controller=user&action=login"><?= $langNavbarLogin ?></a>
+                        <a class="nav-link" href="./?controller=User&action=login"><?= $langNavbarLogin ?></a>
                     </li>
                 <?php endif; ?>
                 <?php if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] == "customer") : ?>

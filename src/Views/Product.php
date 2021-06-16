@@ -30,11 +30,11 @@
                     </form>
 
                 </div>
-                <div class="col-12 mb-3"><img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available"></div>
+                <div class="col-12 mb-3"><img src="src/Images/<?php echo $product->get('image'); ?>" alt="No image available"></div>
                 <div class="row">
                     <div class="col-12 mb-3 mx-auto">
                         <h5> Afbeelding toevoegen</h5><br>
-                        <form class="form-inline mx-auto" method="post" action="index.php?controller=product&action=addImage" enctype='multipart/form-data'>
+                        <form class="form-inline mx-auto" method="post" action="index.php?controller=Product&action=addImage" enctype='multipart/form-data'>
                             <input class="form-control" type='file' id="formfile" name='file' />
                             <input type="hidden" name="id" value="<?= $product->get('id') ?>">
                             <input class="btn btn-main-admin" type='submit' value="Afbeelding opslaan" name='image_upload'>

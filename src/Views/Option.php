@@ -13,7 +13,7 @@
 				<div class="col-md-3">
 					<h5><?php echo $option->get('name'); ?></h5>
 				</div>
-				<div class="col-md-4"><img src="src/images/<?php echo $option->get('image'); ?>" alt="No image available"></div>
+				<div class="col-md-4"><img src="src/Images/<?php echo $option->get('image'); ?>" alt="No image available"></div>
 				<div class="col-md-2"><strong>€ <?php echo $option->get('price'); ?></strong></div>
 				<div class="col-md-3">
 					<form method="post" action="index.php?controller=Basket&action=addOption" enctype='multipart/form-data'>
@@ -26,7 +26,7 @@
 		<?php endforeach; ?>
 		<div class="row justify-content-center">
 			<h2 class="col-md-12"><?php echo $bike->get('model')->get('name'); ?></h2>
-			<img class="col-md-6 align-self-center mb-3" src="src/images/<?php echo $bike->get('model')->get('image'); ?>" alt="No image available">
+			<img class="col-md-6 align-self-center mb-3" src="src/Images/<?php echo $bike->get('model')->get('image'); ?>" alt="No image available">
 		</div>
 
 
@@ -42,7 +42,7 @@
 					<div class="col-md-3">
 						<h5><?php echo $bikeOption->get('name'); ?></h5>
 					</div>
-					<div class="col-md-4"><img src="src/images/<?php echo $bikeOption->get('image'); ?>" alt="No image available"></div>
+					<div class="col-md-4"><img src="src/Images/<?php echo $bikeOption->get('image'); ?>" alt="No image available"></div>
 					<div class="col-md-2"><strong>€ <?php echo $bikeOption->get('price'); ?></strong></div>
 					<div class="col-md-3">
 						<form method="post" action="index.php?controller=Basket&action=removeOption" enctype='multipart/form-data'>

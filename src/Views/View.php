@@ -9,6 +9,7 @@ class View
 
     public function __construct($template)
     {
+        $template = ucfirst($template);
         $this->template = $template;
     }
 
@@ -22,17 +23,15 @@ class View
         return $this->data[$key];
     }
 
-    public function render() : void
+    public function render(): void
     {
-        if ( ! file_exists( 'src/Views/' . $this->template . '.php' ) )
-            throw new Exception( "De template " . $this->template . " bestaat niet..." );
+        if (!file_exists('src/Views/' . $this->template . '.php'))
+            throw new Exception("De template " . $this->template . " bestaat niet...");
 
         extract($this->data);
 
-        require_once ( 'languages/' . $_SESSION['lang'] . '.php');
+        require_once('languages/' . $_SESSION['lang'] . '.php');
 
-        require_once ( $this->template . '.php');
-
+        require_once($this->template . '.php');
     }
 }
-

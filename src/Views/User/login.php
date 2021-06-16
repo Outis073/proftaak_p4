@@ -15,7 +15,7 @@
             <div class="col-lg-8 mx-auto">
                 <div class="bg-white rounded text-center p-5 shadow-down">
 
-                    <form method="POST" action="index.php?controller=user&action=login" class="row">
+                    <form method="POST" action="index.php?controller=User&action=login" class="row">
 
                         <div class="col-md-12">
 

@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="row mb-4">
 					<div class="col-md-6 text-center mb-5 mb-md-0">
-						<img src="src/images/<?php echo $product->get('image'); ?>" alt="No image available">
+						<img src="src/Images/<?php echo $product->get('image'); ?>" alt="No image available">
 					</div>
 					<div class="col-md-6 align-self-center text-center text-md-left">
 						<div class="block">
