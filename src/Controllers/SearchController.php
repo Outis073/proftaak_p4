@@ -7,8 +7,16 @@
             
             //Checks if the page was loaded through post. Sets view variables if so.
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $view->set('search',$_POST['search']);
-                $view->set('searchResults', Search::getSearchResults($_POST['search']));
+
+                // Sanitize input
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                
+                // trim input
+                $search = trim($_POST['search']);
+
+                // prepare view
+                $view->set('search',$search);
+                $view->set('searchResults', Search::getSearchResults($search));
             }
 
             //Renders view.
